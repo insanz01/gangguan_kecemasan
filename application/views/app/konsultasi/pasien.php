@@ -48,8 +48,8 @@
 			        					<input type="radio" name="jenis_kelamin" value="Perempuan"> Perempuan
 			        				</div>
         							<div class="form-group">
-        								<button type="reset" class="btn btn-danger">Reset</button>
-        								<button type="submit" class="btn btn-primary">Lanjut</button>
+        								<button type="submit" class="btn btn-primary btn-block">Lanjut</button>
+                        <button type="reset" class="btn btn-danger btn-block">Reset</button>
         							</div>
         						</form>
         					</div>
