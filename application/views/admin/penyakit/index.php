@@ -53,7 +53,7 @@
                             <td><?= $p['solusi'] ?></td>
                             <td>
                               <a href="#!" class="badge badge-sm badge-info badge-pill">Edit</a>
-                              <a href="#!" class="badge badge-sm badge-danger badge-pill">Hapus</a>
+                              <a href="<?= base_url('Admin/penyakit/delete/') . $p['id'] ?>" class="badge badge-sm badge-danger badge-pill">Hapus</a>
                             </td>
                           </tr>
                         <?php endforeach; ?>

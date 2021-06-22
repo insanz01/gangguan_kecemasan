@@ -226,6 +226,7 @@ class App extends CI_Controller {
 					if($max_skor < (float)$skor) {
 						$max_skor = (float)$skor;
 						$kategori = $this->crud->get_kategori_name($id);
+						$solusi = $this->crud->get_solusi_text($id);
 					}
 				}
 

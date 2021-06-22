@@ -34,7 +34,7 @@ class CRUDModel extends CI_Model {
 	}
 
 	public function delete($table, $id) {
-		return  $this->db->delete($table, ['ID' => $id]);
+		return $this->db->delete($table, ['id' => $id]);
 	}
 
 	// fungsi aktivasi
@@ -59,6 +59,14 @@ class CRUDModel extends CI_Model {
 		$nama = $data['nama'];
 
 		return $nama;
+	}
+
+	public function get_solusi_text($id) {
+		$data = $this->db->get_where('penyakit', ['id' => $id])->row_array();
+
+		$solusi = $data['solusi'];
+
+		return $solusi;	
 	}
 
 }

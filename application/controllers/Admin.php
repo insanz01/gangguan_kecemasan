@@ -8,7 +8,7 @@ class Admin extends CI_Controller {
 		$this->load->model('AdminModel', 'admin');
 	}
 
-	public function gejala($aksi = NULL) {
+	public function gejala($aksi = NULL, $id = NULL) {
 		if($aksi == 'add') {
 			$data = $this->input->post();
 			$data['id'] = NULL;
@@ -17,6 +17,18 @@ class Admin extends CI_Controller {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil menambahkan data gejala.</div>');
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal menambahkan data gejala.</div>');
+			}
+
+			redirect('Admin/gejala');
+		} else if($aksi == 'delete') {
+			if($id == NULL) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal melakukan aksi</div>');
+			}
+
+			if($this->crud->delete('gejala', $id)) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil menghapus data</div>');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal menghapus data</div>');
 			}
 
 			redirect('Admin/gejala');
@@ -31,7 +43,7 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function penyakit($aksi = NULL) {
+	public function penyakit($aksi = NULL, $id = NULL) {
 		if($aksi == 'add') {
 			$data = $this->input->post();
 			$data['id'] = NULL;
@@ -40,6 +52,18 @@ class Admin extends CI_Controller {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil menambahkan data penyakit.</div>');
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal menambahkan data penyakit.</div>');
+			}
+
+			redirect('Admin/penyakit');
+		} else if($aksi == 'delete') {
+			if($id == NULL) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal melakukan aksi</div>');
+			}
+
+			if($this->crud->delete('penyakit', $id)) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil menghapus data</div>');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal menghapus data</div>');
 			}
 
 			redirect('Admin/penyakit');
@@ -54,7 +78,7 @@ class Admin extends CI_Controller {
 		}
 	}
 
-	public function certainty($aksi = NULL) {
+	public function certainty($aksi = NULL, $id = NULL) {
 		if($aksi == 'add') {
 			$data = $this->input->post();
 			$data['id'] = NULL;
@@ -63,6 +87,18 @@ class Admin extends CI_Controller {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil menambahkan data certainty.</div>');
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal menambahkan data certainty.</div>');
+			}
+
+			redirect('Admin/certainty');
+		} else if($aksi == 'delete') {
+			if($id == NULL) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal melakukan aksi</div>');
+			}
+
+			if($this->crud->delete('certainty', $id)) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil menghapus data</div>');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal menghapus data</div>');
 			}
 
 			redirect('Admin/certainty');
