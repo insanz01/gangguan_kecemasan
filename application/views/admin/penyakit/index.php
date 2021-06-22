@@ -40,7 +40,8 @@
                     <table style="width: 100%" class="table table-striped tabled-bordered">
                       <thead>
                         <th style="width: 10%">#</th>
-                        <th style="width: 80%">Nama Penyakit</th>
+                        <th style="width: 30%">Nama Penyakit</th>
+                        <th style="width: 50%">Solusi</th>
                         <th style="width: 10%">Aksi</th>
                       </thead>
                       <tbody>
@@ -49,6 +50,7 @@
                           <tr>
                             <td><?= $nomor++ ?></td>
                             <td><?= $p['nama'] ?></td>
+                            <td><?= $p['solusi'] ?></td>
                             <td>
                               <a href="#!" class="badge badge-sm badge-info badge-pill">Edit</a>
                               <a href="#!" class="badge badge-sm badge-danger badge-pill">Hapus</a>
@@ -89,6 +91,10 @@
           <div class="form-group">
             <label>Keterangan Penyakit</label>
             <textarea name="keterangan" class="form-control" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Solusi Penyakit</label>
+            <textarea name="solusi" class="form-control" required></textarea>
           </div>
         </div>
         <div class="modal-footer">
