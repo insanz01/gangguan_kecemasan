@@ -234,24 +234,30 @@ class App extends CI_Controller {
 				$data['solusi'] = $solusi;
 				$data['akurasi'] = (float)$max_skor * 100;
 
-				$riwayat = [
-					'id' => NULL,
-					'user_id' => $this->session->userdata('sess_user_id'),
-					'nama' => $this->session->userdata('sess_pasien_nama'),
-					'umur' => $this->session->userdata('sess_pasien_umur'),
-					'jenis_kelamin' => $this->session->userdata('sess_pasien_jenis_kelamin'),
-					'tanggal_konsultasi' => date('Y-m-d', time()),
-					'diagnosis' => $kategori,
-					'solusi' => $solusi
-				];
+				if($this->session->userdata('sess_user_id')) {
+					$riwayat = [
+						'id' => NULL,
+						'user_id' => $this->session->userdata('sess_user_id'),
+						'nama' => $this->session->userdata('sess_pasien_nama'),
+						'umur' => $this->session->userdata('sess_pasien_umur'),
+						'jenis_kelamin' => $this->session->userdata('sess_pasien_jenis_kelamin'),
+						'tanggal_konsultasi' => date('Y-m-d', time()),
+						'diagnosis' => $kategori,
+						'solusi' => $solusi
+					];
 
-				$this->crud->insert($riwayat, 'riwayat');
+					$this->crud->insert($riwayat, 'riwayat');
+				}
 
 				$url_page = "app/konsultasi/result";
 			break;
 			case 5:
 				$user_id = $this->session->userdata('sess_user_id');
-				$data['riwayat'] = $this->admin->riwayat_konsultasi($user_id);
+				$data['riwayat'] = [];
+				
+				if($user_id) {
+					$data['riwayat'] = $this->admin->riwayat_konsultasi($user_id);
+				}
 
 				$url_page = "app/konsultasi/riwayat";
 			break;

@@ -39,14 +39,20 @@
         								<th>Solusi Penanganan</th>
         							</thead>
         							<tbody>
-                        <?php foreach($riwayat as $r): ?>
-          								<tr>
-          									<td><?= $r['nama'] ?></td>
-          									<td><?= date('d/m/Y', strtotime($r['tanggal_konsultasi'])) ?></td>
-          									<td><?= $r['diagnosis'] ?></td>
-          									<td><?= $r['solusi'] ?></td>
-          								</tr>
-                        <?php endforeach; ?>
+                        <?php if($riwayat != []): ?>
+                          <?php foreach($riwayat as $r): ?>
+                            <tr>
+                              <td><?= $r['nama'] ?></td>
+                              <td><?= date('d/m/Y', strtotime($r['tanggal_konsultasi'])) ?></td>
+                              <td><?= $r['diagnosis'] ?></td>
+                              <td><?= $r['solusi'] ?></td>
+                            </tr>
+                          <?php endforeach; ?>
+                        <?php else: ?>
+                          <tr>
+                            <td colspan="4" class="text-center">Tidak ada riwayat. Anda belum <a href="<?= base_url('app/login') ?>">login</a></td>
+                          </tr>
+                        <?php endif; ?>
         							</tbody>
         						</table>
         					</div>
