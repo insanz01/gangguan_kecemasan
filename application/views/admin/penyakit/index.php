@@ -52,7 +52,7 @@
                             <td><?= $p['nama'] ?></td>
                             <td><?= $p['solusi'] ?></td>
                             <td>
-                              <a href="#!" class="badge badge-sm badge-info badge-pill">Edit</a>
+                              <a href="#!" id-penyakit="<?= $p['id'] ?>" onclick="show_data(this)" role="button" class="badge badge-sm badge-info badge-pill" data-toggle="modal" data-target="#editModal">Edit</a>
                               <a href="<?= base_url('Admin/penyakit/delete/') . $p['id'] ?>" class="badge badge-sm badge-danger badge-pill">Hapus</a>
                             </td>
                           </tr>
@@ -105,3 +105,57 @@
     </div>
   </div>
 </div>
+
+  <!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url('admin/penyakit/update') ?>" method="post">
+        <div class="modal-body">
+          <input type="hidden" id="id_penyakit" name="id_penyakit">
+          <div class="form-group">
+            <label>Nama Penyakit</label>
+            <input type="text" name="nama" id="nama_edit" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Keterangan Penyakit</label>
+            <textarea name="keterangan" id="keterangan_edit" class="form-control" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Solusi Penyakit</label>
+            <textarea name="solusi" id="solusi_edit" class="form-control" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  const get_data = async (id) => {
+    return await axios.get(`<?= base_url('api/penyakit/get/') ?>${id}`).then(res => res.data)
+  }
+
+  const show_data = async (target) => {
+    const id = target.getAttribute('id-penyakit')
+
+    const result = await get_data(id).then(res => res)
+
+    console.log(result)
+
+    document.getElementById('id_penyakit').value = id;
+    document.getElementById('nama_edit').value = result.nama;
+    document.getElementById('keterangan_edit').value = result.keterangan;
+    document.getElementById('solusi_edit').value = result.solusi;
+  }
+</script>

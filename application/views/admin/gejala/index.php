@@ -50,7 +50,7 @@
                             <td><?= $nomor++ ?></td>
                             <td><?= $g['nama'] ?></td>
                             <td>
-                              <a href="#!" class="badge badge-sm badge-info badge-pill">Edit</a>
+                              <a href="#!" id-gejala="<?= $g['id'] ?>" onclick="show_data(this)" role="button" class="badge badge-sm badge-info badge-pill" data-toggle="modal" data-target="#editModal">Edit</a>
                               <a href="<?= base_url('Admin/gejala/delete/') . $g['id'] ?>" class="badge badge-sm badge-danger badge-pill">Hapus</a>
                             </td>
                           </tr>
@@ -99,3 +99,52 @@
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url('admin/gejala/update') ?>" method="post">
+        <div class="modal-body">
+          <input type="hidden" id="id_gejala" name="id_gejala">
+          <div class="form-group">
+            <label>Nama Gejala</label>
+            <input type="text" name="nama" id="nama_edit" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Keterangan Gejala</label>
+            <textarea name="keterangan" id="keterangan_edit" class="form-control" required></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  const get_data = async (id) => {
+    return await axios.get(`<?= base_url('api/gejala/get/') ?>${id}`).then(res => res.data)
+  }
+
+  const show_data = async (target) => {
+    const id = target.getAttribute('id-gejala')
+
+    const result = await get_data(id).then(res => res)
+
+    console.log(result)
+
+    document.getElementById('id_gejala').value = id;
+    document.getElementById('nama_edit').value = result.nama;
+    document.getElementById('keterangan_edit').value = result.keterangan;
+  }
+</script>

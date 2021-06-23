@@ -54,7 +54,7 @@
                             <td><?= $c['nama_gejala'] ?></td>
                             <td><?= $c['skor'] ?></td>
                             <td>
-                              <a href="#!" class="badge badge-sm badge-info badge-pill">Edit</a>
+                              <a href="#!" id-certainty="<?= $c['id'] ?>" onclick="show_data(this)" role="button" class="badge badge-sm badge-info badge-pill" data-toggle="modal" data-target="#editModal">Edit</a>
                               <a href="<?= base_url('Admin/certainty/delete/') . $c['id'] ?>" class="badge badge-sm badge-danger badge-pill">Hapus</a>
                             </td>
                           </tr>
@@ -74,7 +74,7 @@
   </div>
   <!-- /.content-wrapper -->
 
-    <!-- Modal -->
+<!-- Modal -->
 <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -121,3 +121,71 @@
     </div>
   </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Data</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="<?= base_url('admin/certainty/update') ?>" method="post">
+        <div class="modal-body">
+          <input type="hidden" id="id_certainty" name="id_certainty">
+          <div class="form-group">
+            <label>Nama Penyakit</label>
+            <select class="form-control" id="penyakit_edit" name="penyakit_id" required>
+              <option value="">BELUM DIPILIH</option>
+              <?php foreach($penyakit as $p): ?>
+                <option value="<?= $p['id'] ?>"><?= $p['nama'] ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Nama Gejala</label>
+            <select class="form-control" id="gejala_edit" name="gejala_id" required>
+              <option value="">BELUM DIPILIH</option>
+              <?php foreach($gejala as $g): ?>
+                <option value="<?= $g['id'] ?>"><?= $g['nama'] ?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label>Skor CF</label>
+            <input type="text" name="skor" id="skor_edit" class="form-control" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  const get_data = async (id) => {
+    return await axios.get(`<?= base_url('api/certainty/get/') ?>${id}`).then(res => res.data)
+  }
+
+  const show_data = async (target) => {
+    const id = target.getAttribute('id-certainty')
+
+    const result = await get_data(id).then(res => res)
+
+    console.log(result)
+
+    document.getElementById('id_certainty').value = id;
+    document.getElementById('penyakit_edit').value = result.penyakit_id;
+    document.getElementById('gejala_edit').value = result.gejala_id;
+    document.getElementById('skor_edit').value = result.skor;
+  }
+</script>

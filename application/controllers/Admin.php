@@ -20,6 +20,21 @@ class Admin extends CI_Controller {
 			}
 
 			redirect('Admin/gejala');
+		} else if($aksi == 'update') {
+			$data = [
+				'nama' => $this->input->post('nama'),
+				'keterangan' => $this->input->post('keterangan')
+			];
+
+			$id = $this->input->post('id_gejala');
+
+			if($this->crud->update($data, 'gejala', $id)) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil merubah data gejala.</div>');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal merubah data gejala.</div>');
+			}
+
+			redirect('Admin/gejala');
 		} else if($aksi == 'delete') {
 			if($id == NULL) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal melakukan aksi</div>');
@@ -55,6 +70,22 @@ class Admin extends CI_Controller {
 			}
 
 			redirect('Admin/penyakit');
+		} else if($aksi == 'update') {
+			$data = [
+				'nama' => $this->input->post('nama'),
+				'keterangan' => $this->input->post('keterangan'),
+				'solusi' => $this->input->post('solusi')
+			];
+
+			$id = $this->input->post('id_penyakit');
+
+			if($this->crud->update($data, 'penyakit', $id)) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil merubah data penyakit.</div>');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal merubah data penyakit.</div>');
+			}
+
+			redirect('Admin/penyakit');
 		} else if($aksi == 'delete') {
 			if($id == NULL) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal melakukan aksi</div>');
@@ -87,6 +118,22 @@ class Admin extends CI_Controller {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil menambahkan data certainty.</div>');
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal menambahkan data certainty.</div>');
+			}
+
+			redirect('Admin/certainty');
+		} else if($aksi == 'update') {
+			$data = [
+				'penyakit_id' => $this->input->post('penyakit_id'),
+				'gejala_id' => $this->input->post('gejala_id'),
+				'skor' => $this->input->post('skor')
+			];
+
+			$id = $this->input->post('id_cetainty');
+
+			if($this->crud->update($data, 'certainty', $id)) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil merubah data certainty.</div>');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal merubah data certainty.</div>');
 			}
 
 			redirect('Admin/certainty');
