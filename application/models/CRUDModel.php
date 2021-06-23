@@ -30,7 +30,7 @@ class CRUDModel extends CI_Model {
 		$this->db->where('id', $id);
 		$this->db->update($table);
 
-		return $this->db->rows_affected();
+		return $this->db->affected_rows();
 	}
 
 	public function delete($table, $id) {

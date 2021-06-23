@@ -141,6 +141,7 @@ class App extends CI_Controller {
 			if($this->auth->login($data)) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Login Berhasil</div>');
 
+				var_dump($this->session->userdata()); die;
 				redirect('app/index');
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Login Gagal</div>');
@@ -196,6 +197,7 @@ class App extends CI_Controller {
 					$penyakit_id = (int) $temp[3];
 					$skor = (float) str_replace('_', '.', $skor);
 					$bobot = (float) $dt;
+
 					if($bobot != 0)
 						$bobot = (float) $bobot / 5;
 
@@ -234,6 +236,7 @@ class App extends CI_Controller {
 				$data['solusi'] = $solusi;
 				$data['akurasi'] = (float)$max_skor * 100;
 
+				// akan menyimpan riwayat ketika sudah login
 				if($this->session->userdata('sess_user_id')) {
 					$riwayat = [
 						'id' => NULL,
@@ -254,7 +257,7 @@ class App extends CI_Controller {
 			case 5:
 				$user_id = $this->session->userdata('sess_user_id');
 				$data['riwayat'] = [];
-				
+
 				if($user_id) {
 					$data['riwayat'] = $this->admin->riwayat_konsultasi($user_id);
 				}
