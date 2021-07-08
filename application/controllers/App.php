@@ -151,11 +151,30 @@ class App extends CI_Controller {
 	}
 
 	public function register() {
-		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
-		$this->load->view('templates/sidebar');
-		$this->load->view('app/akun/register');
-		$this->load->view('templates/footer');
+		$this->form_validation->set_rules('nama_lengkap', 'NamaLengkap', 'required');
+		$this->form_validation->set_rules('username', 'Username', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		if($this->form_validation->run() === FALSE) {
+			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidebar');
+			$this->load->view('app/akun/register');
+			$this->load->view('templates/footer');
+		} else {
+			$data = $this->input->post();
+			$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+			$data['role_id'] = 2;
+			$data['id'] = NULL;
+
+			if($this->crud->insert($data, 'users')) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil registrasi.</div>');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal registrasi.</div>');
+			}
+
+			redirect('app/register');
+		}
 	}
 
 	public function logout() {

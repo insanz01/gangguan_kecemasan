@@ -235,22 +235,37 @@ class Admin extends CI_Controller {
 		$this->image_lib->clear();
 	}
 
-	public function akun($role) {
-		$data = [];
-		$page = "";
+	public function akun($role, $aksi = '') {
+		if($aksi == "add" and $role == 'pakar') {
+			$data = $this->input->post();
+			$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+			$data['role_id'] = 3;
 
-		if($role == "pakar") {
-			$data['user'] = $this->admin->get_userdata('pakar');
-			$page = "admin/akun/pakar/index";
-		} elseif($role == "member") {
-			$data['user'] = $this->admin->get_userdata('member');
-			$page = "admin/akun/member/index";
+			if($this->crud->insert($data, 'users')) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil registrasi</div>');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal registrasi</div>');
+			}
+
+			redirect('admin/akun/pakar');
+		} else {
+			$data = [];
+			$page = "";
+
+			if($role == "pakar") {
+				$data['user'] = $this->admin->get_userdata('pakar');
+				$page = "admin/akun/pakar/index";
+			} elseif($role == "member") {
+				$data['user'] = $this->admin->get_userdata('member');
+				$page = "admin/akun/member/index";
+			}
+
+			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidebar');
+			$this->load->view($page, $data);
+			$this->load->view('templates/footer');
 		}
-
-		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
-		$this->load->view('templates/sidebar');
-		$this->load->view($page, $data);
-		$this->load->view('templates/footer');
 	}
+
 }
