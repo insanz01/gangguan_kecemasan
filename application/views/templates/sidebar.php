@@ -42,40 +42,42 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="<?= base_url('app/konsultasi') ?>" class="nav-link">
-              <i class="nav-icon fas fa-person-booth"></i>
-              <p>
-                Konsultasi
-                <!-- <span class="badge badge-info right">2</span> -->
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="<?= base_url('app/edukasi') ?>" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Edukasi
-                <!-- <span class="badge badge-info right">2</span> -->
-              </p>
-            </a>
-          </li>
-          <!-- <li class="nav-item">
-            <a href="<?= base_url('app/artikel') ?>" class="nav-link">
-              <i class="nav-icon fas fa-newspaper"></i>
-              <p>
-                Artikel
-              </p>
-            </a>
-          </li> -->
-          <li class="nav-item">
-            <a href="<?= base_url('app/bantuan') ?>" class="nav-link">
-              <i class="nav-icon fas fa-hands-helping"></i>
-              <p>
-                Bantuan
-              </p>
-            </a>
-          </li>
+          <?php if($this->session->userdata('sess_role_id') != 1): ?>
+            <li class="nav-item">
+              <a href="<?= base_url('app/konsultasi') ?>" class="nav-link">
+                <i class="nav-icon fas fa-person-booth"></i>
+                <p>
+                  Konsultasi
+                  <!-- <span class="badge badge-info right">2</span> -->
+                </p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="<?= base_url('app/edukasi') ?>" class="nav-link">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                  Edukasi
+                  <!-- <span class="badge badge-info right">2</span> -->
+                </p>
+              </a>
+            </li>
+            <!-- <li class="nav-item">
+              <a href="<?= base_url('app/artikel') ?>" class="nav-link">
+                <i class="nav-icon fas fa-newspaper"></i>
+                <p>
+                  Artikel
+                </p>
+              </a>
+            </li> -->
+            <li class="nav-item">
+              <a href="<?= base_url('app/bantuan') ?>" class="nav-link">
+                <i class="nav-icon fas fa-hands-helping"></i>
+                <p>
+                  Bantuan
+                </p>
+              </a>
+            </li>
+          <?php endif; ?>
           <?php if(!$this->session->userdata('sess_user_id')): ?>
             <li class="nav-item">
               <a href="<?= base_url('app/login') ?>" class="nav-link">

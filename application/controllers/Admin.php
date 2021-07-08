@@ -234,4 +234,23 @@ class Admin extends CI_Controller {
 
 		$this->image_lib->clear();
 	}
+
+	public function akun($role) {
+		$data = [];
+		$page = "";
+
+		if($role == "pakar") {
+			$data['user'] = $this->admin->get_userdata('pakar');
+			$page = "admin/akun/pakar/index";
+		} elseif($role == "member") {
+			$data['user'] = $this->admin->get_userdata('member');
+			$page = "admin/akun/member/index";
+		}
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/sidebar');
+		$this->load->view($page, $data);
+		$this->load->view('templates/footer');
+	}
 }

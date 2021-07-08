@@ -12,4 +12,11 @@ class AdminModel extends CI_Model {
 
 		return $this->db->query($query)->result_array();
 	}
+
+	public function get_userdata($role) {
+		$role_id = ($role == "pakar") ? 3 : 2;
+		$query = "SELECT * FROM users WHERE role_id = $role_id";
+
+		return $this->db->query($query)->result_array();
+	}
 }
