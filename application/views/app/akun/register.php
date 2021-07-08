@@ -24,30 +24,30 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-7 mx-auto">
-          	<div class="card">
-          		<div class="card-body">
-          			<form action="<?= base_url('app/register') ?>" method="post">
-          				<div class="form-group">
-          					<label>Nama Lengkap</label>
-          					<input type="text" name="nama_lengkap" class="form-control" required>
-          				</div>
-          				<div class="form-group">
-          					<label>Username</label>
-          					<input type="text" name="username" class="form-control" required>
-          				</div>
-          				<div class="form-group">
-          					<label>Password</label>
-          					<input type="password" name="password" class="form-control" required>
-          				</div>
-          				<div class="form-group">
-          					<button type="submit" class="btn btn-success btn-block">REGISTRASI</button>
-          				</div>
-          			</form>
-          			<div class="text-center">
-	          			<a href="<?= base_url('app/login') ?>">Sudah Punya Akun ?</a>
-          			</div>
-          		</div>
-          	</div>
+            <div class="card">
+              <div class="card-body">
+                <form action="<?= base_url('app/register') ?>" method="post">
+                  <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" name="nama_lengkap" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="username" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="password" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-block">REGISTRASI</button>
+                  </div>
+                </form>
+                <div class="text-center">
+                  <a href="<?= base_url('app/login') ?>">Sudah Punya Akun ?</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         

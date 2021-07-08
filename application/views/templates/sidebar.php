@@ -60,15 +60,14 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="<?= base_url('app/artikel') ?>" class="nav-link">
               <i class="nav-icon fas fa-newspaper"></i>
               <p>
                 Artikel
-                <!-- <span class="badge badge-info right">2</span> -->
               </p>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item">
             <a href="<?= base_url('app/bantuan') ?>" class="nav-link">
               <i class="nav-icon fas fa-hands-helping"></i>
@@ -88,8 +87,8 @@
               </a>
             </li>
           <?php else: ?>
-            <?php if($this->session->userdata('sess_role_id') == 1): ?>
-              <li class="nav-header">ADMIN AREA</li>
+            <?php if($this->session->userdata('sess_role_id') == 3): ?>
+              <li class="nav-header">PAKAR AREA</li>
               <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-users"></i>
@@ -117,10 +116,35 @@
                       <p>Certainty Factor</p>
                     </a>
                   </li>
-                  <li class="nav-item">
+                  <!-- <li class="nav-item">
                     <a href="<?= base_url('admin/artikel') ?>" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Artikel</p>
+                    </a>
+                  </li> -->
+                </ul>
+              </li>
+            <?php elseif($this->session->userdata('sess_role_id') == 1): ?>
+              <li class="nav-header">ADMIN AREA</li>
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-users"></i>
+                  <p>
+                    Master Data
+                    <i class="right fas fa-angle-left"></i>
+                  </p>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="<?= base_url('admin/akun/pakar') ?>" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Akun Pakar</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="<?= base_url('admin/akun/member') ?>" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Akun Member</p>
                     </a>
                   </li>
                 </ul>

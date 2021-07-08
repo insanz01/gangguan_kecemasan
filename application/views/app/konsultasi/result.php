@@ -23,30 +23,43 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-        	<div class="col-10 mx-auto">
-        		<h3 class="display-4 text-center">Hasil Diagnosa</h3>
-        		<hr class="text-center">
+          <div class="col-10 mx-auto">
+            <h3 class="display-4 text-center">Hasil Diagnosa</h3>
+            <hr class="text-center">
 
-        		<div class="row">
-        			<div class="col-7 mx-auto">
-        				<div class="card">
-        					<div class="card-body">
+            <div class="row">
+              <div class="col-7 mx-auto">
+                <div class="card">
+                  <div class="card-body">
                     <div class="row">
                       <div class="col text-center">
+                        <?php $gambar = mt_rand(1, 10); ?>
+                        <img src="<?= base_url('assets/penyakit/') . strval($gambar) . '.jpg' ?>" alt="Gambar" width="200">
                         <h3 class="display-5">
                           <?= $hasil ?>
                         </h3>
                         <hr>
                         <p class="lead <?= ($akurasi > 0.5) ? 'text-success': 'text-danger' ?>">
-                          <?= $akurasi . '%' ?>
+                          Akurasi <?= $akurasi . '%' ?>
                         </p>
                       </div>
                     </div>
-        					</div>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
+                  </div>
+                </div>
+
+                <!-- <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col text-center">
+                        <p></p>
+                      </div>
+                    </div>
+                  </div>
+                </div> -->
+
+              </div>
+            </div>
+          </div>
         </div>
         
       </div><!-- /.container-fluid -->

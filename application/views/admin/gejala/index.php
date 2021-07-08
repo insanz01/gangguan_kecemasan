@@ -23,19 +23,19 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-        	<div class="col-10 mx-auto">
-        		<h3 class="text-center">Master Data Gejala</h3>
-        		<hr class="text-center">
+          <div class="col-10 mx-auto">
+            <h3 class="text-center">Master Data Gejala</h3>
+            <hr class="text-center">
 
-        		<div class="row">
+            <div class="row">
               <div class="col-12 mb-2">
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addModal">
                 Tambah Data
                 </button>
               </div>
-        			<div class="col-12 mx-auto">
-        				<div class="card">
+              <div class="col-12 mx-auto">
+                <div class="card">
                   <div class="card-body">
                     <table style="width: 100%" class="table table-striped tabled-bordered">
                       <thead>
@@ -58,10 +58,10 @@
                       </tbody>
                     </table>
                   </div>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         
       </div><!-- /.container-fluid -->

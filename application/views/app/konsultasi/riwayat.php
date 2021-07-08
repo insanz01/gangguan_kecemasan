@@ -23,22 +23,22 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-        	<div class="col-10 mx-auto">
-        		<h3 class="text-center">Riwayat Konsultasi</h3>
-        		<hr class="text-center">
+          <div class="col-10 mx-auto">
+            <h3 class="text-center">Riwayat Konsultasi</h3>
+            <hr class="text-center">
 
-        		<div class="row">
-        			<div class="col-12">
-        				<div class="card">
-        					<div class="card-body">
-        						<table class="table table-striped table-bordered">
-        							<thead>
-        								<th>Nama</th>
-        								<th>Tanggal Konsultasi</th>
-        								<th>Diagnosis</th>
-        								<th>Solusi Penanganan</th>
-        							</thead>
-        							<tbody>
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <table class="table table-striped table-bordered">
+                      <thead>
+                        <th>Nama</th>
+                        <th>Tanggal Konsultasi</th>
+                        <th>Diagnosis</th>
+                        <th>Solusi Penanganan</th>
+                      </thead>
+                      <tbody>
                         <?php if($riwayat != []): ?>
                           <?php foreach($riwayat as $r): ?>
                             <tr>
@@ -53,13 +53,13 @@
                             <td colspan="4" class="text-center">Tidak ada riwayat. Anda belum <a href="<?= base_url('app/login') ?>">login</a></td>
                           </tr>
                         <?php endif; ?>
-        							</tbody>
-        						</table>
-        					</div>
-        				</div>
-        			</div>
-        		</div>
-        	</div>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         
       </div><!-- /.container-fluid -->

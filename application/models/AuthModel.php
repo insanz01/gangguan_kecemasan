@@ -1,4 +1,6 @@
 <?php
+# nitip
+# https://github.com/bebasid/bebasid/blob/master/releases/hosts
 
 class AuthModel extends CI_Model {
 	public function login($data) {
