@@ -220,7 +220,7 @@ class App extends CI_Controller {
 		$this->email->send();		
 	}
 
-	public function forgot($aksi) {
+	public function forgot($aksi = '') {
 		if($aksi == 'reset') {
 			$email = $this->input->post('email');
 
