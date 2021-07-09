@@ -246,7 +246,7 @@ class Admin extends CI_Controller {
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal registrasi</div>');
 			}
-
+			
 			redirect('admin/akun/pakar');
 		} else {
 			$data = [];
