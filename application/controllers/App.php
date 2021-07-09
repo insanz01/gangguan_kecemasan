@@ -390,15 +390,15 @@ class App extends CI_Controller {
 						foreach($penyakit_ids as $pi) {
 							$pi = (int) $pi;
 							if(!in_array($pi, $inserted_kategori)) {
-								$cf = $skor - (1 - $skor);
-								$kombinasi = $cf * $bobot;
+								$cf = $bobot - (1 - $bobot);
+								$kombinasi = $cf * $skor;
 		
 								array_push($inserted_kategori, $pi);
 								// array_push($past_kategori, [$pi => $kombinasi]);
 								$past_kategori[$pi] = $kombinasi;
 							} else {
-								$cf = $skor - (1 - $skor);
-								$kombinasi = $cf * $bobot;
+								$cf = $bobot - (1 - $bobot);
+								$kombinasi = $cf * $skor;
 		
 								$last_kombinasi = $past_kategori[$pi];
 
