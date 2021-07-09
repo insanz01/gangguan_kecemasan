@@ -67,9 +67,9 @@ class AuthModel extends CI_Model {
 		return $this->db->affected_rows();
 	}
 
-	public function aktivasi($email) {
+	public function aktivasi($username) {
 		$this->db->set('is_active', 1);
-		$this->db->where('email', $email);
+		$this->db->where('username', $username);
 		$this->db->update('users');
 
 		return $this->db->affected_rows();

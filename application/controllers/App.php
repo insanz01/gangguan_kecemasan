@@ -172,7 +172,7 @@ class App extends CI_Controller {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil registrasi. Silahkan periksa email untuk melakukan aktivasi.</div>');
 				
 				$subject = 'AKTIVASI AKUN';
-				$url = base_url() . 'app/aktivasi/' . $data['email'];
+				$url = base_url() . 'app/aktivasi/' . $data['username'];
 				$message = "Halo $data[email], kamu bisa aktivasi akun mu pada link : " . $url;
 
 				$this->kirim_email($data['email'], $subject, $message);
@@ -186,8 +186,8 @@ class App extends CI_Controller {
 		}
 	}
 
-	public function aktivasi($email) {
-		if($this->auth->aktivasi($email)) {
+	public function aktivasi($username) {
+		if($this->auth->aktivasi($username)) {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil melakukan aktivasi</div>');
 		} else {
 			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal melakukan aktivasi</div>');

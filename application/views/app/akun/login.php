@@ -22,12 +22,14 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="row">
           <?php if($this->session->flashdata('pesan')): ?>
-            <div class="col-5 mx-auto">
-              <?= $this->session->flashdata('pesan'); ?>
+            <div class="row">
+              <div class="col-5 mx-auto">
+                <?= $this->session->flashdata('pesan'); ?>
+              </div>
             </div>
           <?php endif; ?>
+        <div class="row">
           <div class="col-5 mx-auto">
             <div class="card">
               <div class="card-body">
