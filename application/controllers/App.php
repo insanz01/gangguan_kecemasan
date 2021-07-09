@@ -166,6 +166,7 @@ class App extends CI_Controller {
 			$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 			$data['role_id'] = 2;
 			$data['is_active'] = 0;
+			$data['id'] = NULL;
 
 			if($this->crud->insert($data, 'users')) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil registrasi. Silahkan periksa email untuk melakukan aktivasi.</div>');
