@@ -4,7 +4,7 @@
 
 class AuthModel extends CI_Model {
 	public function login($data) {
-		$user = $this->db->get_where('users', ['username' => $data['username']])->row_array();
+		$user = $this->db->get_where('users', ['username' => $data['username'], 'is_active' => 1])->row_array();
 
 		if(password_verify($data['password'], $user['password'])) {
 			$this->session->set_userdata('sess_user_id', $user['id']);
@@ -33,7 +33,7 @@ class AuthModel extends CI_Model {
 		if($user) {
 			$data = [
 				'id' => NULL,
-				'key' => $key,
+				'kunci' => $key,
 				'user_id' => $user['id'],
 				'created_at' => date('Y-m-d', time()),
 				'updated_at' => date('Y-m-d', time())
@@ -46,7 +46,7 @@ class AuthModel extends CI_Model {
 	}
 
 	public function key_exists($key) {
-		$query = "SELECT reset_password.id as id_reset, reset_password.key, users.id, users.username, users.email FROM reset_password JOIN users ON reset_password.user_id = users.id WHERE reset_password.key = $key";
+		$query = "SELECT reset_password.id as id_reset, reset_password.kunci as key, users.id, users.username, users.email FROM reset_password JOIN users ON reset_password.user_id = users.id WHERE reset_password.kunci = $key";
 
 		$user = $this->db->query($query)->row_array();
 
@@ -55,6 +55,14 @@ class AuthModel extends CI_Model {
 
 	public function change_password($email, $new_password) {
 		$this->db->set('password', $new_password);
+		$this->db->where('email', $email);
+		$this->db->update('users');
+
+		return $this->db->affected_rows();
+	}
+
+	public function aktivasi($email) {
+		$this->db->set('is_active', 1);
 		$this->db->where('email', $email);
 		$this->db->update('users');
 

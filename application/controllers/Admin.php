@@ -240,6 +240,7 @@ class Admin extends CI_Controller {
 			$data = $this->input->post();
 			$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 			$data['role_id'] = 3;
+			$data['is_active'] = 1;
 
 			if($this->crud->insert($data, 'users')) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil registrasi</div>');

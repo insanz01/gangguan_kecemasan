@@ -39,9 +39,10 @@
               <div class="card-body">
                 <table class="table table-striped tabled-bordered">
                   <thead>
-                    <th style="width: 10%">#</th>
+                    <th style="width: 5%">#</th>
                     <th style="width: 20%">Username</th>
-                    <th style="width: 40%">Nama Pengguna</th>
+                    <th style="width: 20%">Nama Pengguna</th>
+                    <th style="width: 25%">Email</th>
                     <th style="width: 20%">Created At</th>
                     <th style="width: 10%">Aksi</th>
                   </thead>
@@ -52,6 +53,7 @@
                         <td><?= $nomor++ ?></td>
                         <td><?= $u['username'] ?></td>
                         <td><?= $u['nama_lengkap'] ?></td>
+                        <td><?= $u['email'] ?></td>
                         <td><?= $u['created_at'] ?></td>
                         <td>
                           <!-- <a href="#!" id-certainty="<?= $c['id'] ?>" onclick="show_data(this)" role="button" class="badge badge-sm badge-info badge-pill" data-toggle="modal" data-target="#editModal">Edit</a> -->
@@ -93,6 +95,10 @@
           <div class="form-group">
             <label>Username</label>
             <input type="text" name="username" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" class="form-control" required>
           </div>
           <div class="form-group">
             <label>Password</label>

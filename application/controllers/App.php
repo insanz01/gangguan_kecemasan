@@ -165,11 +165,18 @@ class App extends CI_Controller {
 			$data = $this->input->post();
 			$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
 			$data['role_id'] = 2;
+			$data['is_active'] = 0;
 			$data['id'] = NULL;
 
 			if($this->crud->insert($data, 'users')) {
-				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil registrasi.</div>');
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil registrasi. Silahkan periksa email untuk melakukan aktivasi.</div>');
 				
+				$subject = 'AKTIVASI AKUN';
+				$url = base_url() . 'app/aktivasi/' . $data['email'];
+				$message = "Halo $data[email], kamu bisa aktivasi akun mu pada link : " . $url;
+
+				$this->kirim_email($data['email'], $subject, $message);
+
 				redirect('app/login');
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal registrasi.</div>');
@@ -177,6 +184,16 @@ class App extends CI_Controller {
 				redirect('app/register');
 			}
 		}
+	}
+
+	public function aktivasi($email) {
+		if($this->auth->aktivasi($email)) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil melakukan aktivasi</div>');
+		} else {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal melakukan aktivasi</div>');
+		}
+
+		redirect('app/login');
 	}
 
 	public function kirim_email($email, $subject, $message) {
@@ -213,7 +230,9 @@ class App extends CI_Controller {
 
 			if($this->auth->reset_password($email, $key)) {
 				$subject = 'RESET PASSWORD';
-				$message = "Halo $email, kamu bisa reset password mu pada link : http://localhost/gangguan-kecemasan/reset/$key";
+				$url = base_url() . 'app/reset/' . $key;
+				$message = "Halo $email, kamu bisa reset password mu pada link : " . $url;
+				// $message = "Halo $email, kamu bisa reset password mu pada link : http://localhost/gangguan-kecemasan/app/reset/$key";
 				$this->kirim_email($email, $subject, $message);
 
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Mohon periksa alamat email anda</div>');
