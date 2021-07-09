@@ -418,15 +418,15 @@ class App extends CI_Controller {
 					} else {
 						$penyakit_id = (int) $penyakit_id;
 						if(!in_array($penyakit_id, $inserted_kategori)) {
-							$cf = $skor - (1 - $skor);
-							$kombinasi = $cf * $bobot;
+							$cf = $bobot - (1 - $bobot);
+							$kombinasi = $cf * $skor;
 	
 							array_push($inserted_kategori, $penyakit_id);
 							// array_push($past_kategori, [$penyakit_id => $kombinasi]);
 							$past_kategori[$penyakit_id] = $kombinasi;
 						} else {
-							$cf = $skor - (1 - $skor);
-							$kombinasi = $cf * $bobot;
+							$cf = $bobot - (1 - $bobot);
+							$kombinasi = $cf * $skor;
 	
 							$last_kombinasi = $past_kategori[$penyakit_id];
 							
