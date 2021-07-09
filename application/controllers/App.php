@@ -179,6 +179,98 @@ class App extends CI_Controller {
 		}
 	}
 
+	public function kirim_email($email, $subject, $message) {
+
+		$config['protocol'] = 'smtp';
+		$config['smtp_host'] = 'ssl://smtp.googlemail.com';
+		$config['smtp_port'] = 465;
+		$config['smtp_user'] = 'firdaus1600018035@webmail.uad.ac.id';
+		$config['smtp_pass'] = '7884145zzz';
+		$config['mailtype'] = 'html';
+		$config['charset'] = 'iso-8859-1';
+
+		$this->load->library('email');
+		$this->email->initialize($config);
+
+		$this->email->set_newline("\r\n");
+
+		$this->email->from('firdaus1600018035@webmail.uad.ac.id', 'Admin Pakar');
+		$this->email->to($email);
+
+		$this->email->subject($subject);
+		$this->email->message($message);
+
+		$this->email->send();		
+	}
+
+	public function forgot($aksi) {
+		if($aksi == 'reset') {
+			$email = $this->input->post('email');
+
+			$this->load->helper('string');
+			// generate key code and send to email
+			$key = random_string('alnum', 16);
+
+			if($this->auth->reset_password($email, $key)) {
+				$subject = 'RESET PASSWORD';
+				$message = "Halo $email, kamu bisa reset password mu pada link : http://localhost/gangguan-kecemasan/reset/$key";
+				$this->kirim_email($email, $subject, $message);
+
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Mohon periksa alamat email anda</div>');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal melakukan reset password</div>');
+			}
+
+			redirect('app/forgot');
+		} else {
+			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidebar');
+			$this->load->view('app/akun/forgot');
+			$this->load->view('templates/footer');
+		}
+	}
+
+	public function reset($key) {
+		$user = $this->auth->key_exists($key);
+		
+		if($user) {
+			$data['user'] = $user;
+
+			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidebar');
+			$this->load->view('app/akun/reset', $data['user']);
+			$this->load->view('templates/footer');
+		} else {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Kunci tidak valid</div>');
+			redirect('app/reset/'.$key);
+		}
+	}
+
+	public function change_password() {
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		if($this->form_validation->run() === FALSE) {
+			$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Terjadi kesalahan dalam reset password</div>');
+
+			redirect('app/login');
+		} else {
+			$data = $this->input->post();
+
+			$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+
+			if($this->auth->change_password($data['email'], $data['password'])) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil reset password</div>');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal reset password</div>');
+			}
+
+			redirect('app/login');
+		}
+	}
+
 	public function logout() {
 		$this->session->sess_destroy();
 

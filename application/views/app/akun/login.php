@@ -45,6 +45,8 @@
                   </div>
                   <div class="text-center">
                     <a href="<?= base_url('app/register') ?>">Belum punya akun?</a>
+                    <br>
+                    <a href="<?= base_url('app/forgot') ?>">Lupa password !</a>
                   </div>
                 </form>
               </div>

@@ -26,4 +26,38 @@ class AuthModel extends CI_Model {
 
 		return $this->db->insert('users', $data);
 	}
+
+	public function reset_password($email, $key = '') {
+		$user = $this->db->get_where('users', ['email' => $email])->row_array();
+
+		if($user) {
+			$data = [
+				'id' => NULL,
+				'key' => $key,
+				'user_id' => $user['id'],
+				'created_at' => date('Y-m-d', time()),
+				'updated_at' => date('Y-m-d', time())
+			];
+
+			return $this->db->insert('reset_password', $data);
+		} else {
+			return false;
+		}
+	}
+
+	public function key_exists($key) {
+		$query = "SELECT reset_password.id as id_reset, reset_password.key, users.id, users.username, users.email FROM reset_password JOIN users ON reset_password.user_id = users.id WHERE reset_password.key = $key";
+
+		$user = $this->db->query($query)->row_array();
+
+		return $user;
+	}
+
+	public function change_password($email, $new_password) {
+		$this->db->set('password', $new_password);
+		$this->db->where('email', $email);
+		$this->db->update('users');
+
+		return $this->db->affected_rows();
+	}
 }
