@@ -34,11 +34,11 @@
                     <form action="<?= base_url('app/konsultasi/3') ?>" method="post">
                       <div class="form-group">
                         <label>Nama</label>
-                        <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama">
+                        <input type="text" name="nama" class="form-control" placeholder="Masukkan Nama" required>
                       </div>
                       <div class="form-group">
                         <label>Umur</label>
-                        <input type="number" name="umur" min=1 class="form-control" placeholder="Masukkan Umur">
+                        <input type="number" name="umur" min=1 class="form-control" placeholder="Masukkan Umur" required>
                       </div>
                       <div class="form-group">
                         <label>Jenis Kelamin</label>
