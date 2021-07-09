@@ -13,9 +13,15 @@ class AuthModel extends CI_Model {
 			$this->session->set_userdata('sess_pasien_nama', $user['nama_lengkap']);
 
 			return true;
+		} else {
+			if(!$user) {
+				$this->session->set_flashdata('<pesan>', '<div class="alert alert-danger" role="alert">Akun anda tidak aktif</div>');
+				return false;
+			} else {
+				$this->session->set_flashdata('<pesan>', '<div class="alert alert-danger" role="alert">Password anda salah</div>');
+				return false;
+			}
 		}
-
-		return false;
 	}
 
 	public function register($data) {

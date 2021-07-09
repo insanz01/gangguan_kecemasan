@@ -39,8 +39,8 @@
                           <?= $hasil ?>
                         </h3>
                         <hr>
-                        <p class="lead <?= ($akurasi > 0.5) ? 'text-success': 'text-danger' ?>">
-                          Akurasi <?= $akurasi . '%' ?>
+                        <p class="lead <?= ($kepercayaan > 0) ? 'text-success': 'text-danger' ?>">
+                          Nilai Kepercayaan <?= $kepercayaan . '%' ?>
                         </p>
                       </div>
                     </div>

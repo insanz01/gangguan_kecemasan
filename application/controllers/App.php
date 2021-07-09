@@ -143,7 +143,7 @@ class App extends CI_Controller {
 
 				redirect('app/index');
 			} else {
-				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Login Gagal</div>');
+				// $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Login Gagal</div>');
 
 				redirect('app/login');
 			}
@@ -386,6 +386,7 @@ class App extends CI_Controller {
 					
 					if(strpos($penyakit_id, '&') !== false) {
 						$penyakit_ids = explode('&', $penyakit_id);
+						// var_dump($penyakit_ids); die;
 						foreach($penyakit_ids as $pi) {
 							$pi = (int) $pi;
 							if(!in_array($pi, $inserted_kategori)) {
@@ -410,6 +411,14 @@ class App extends CI_Controller {
 								} else {
 									$new_kombinasi = ($last_kombinasi + $kombinasi) / (1 - min([$last_kombinasi, $kombinasi]));
 								}
+
+								// echo "==============<br>";
+								// var_dump($kombinasi);
+								// echo "<br>";
+								// var_dump($last_kombinasi);
+								// echo "<br>";
+								// var_dump($new_kombinasi);
+								// echo "<br>";
 		
 								$past_kategori[$pi] = $new_kombinasi;
 							}
@@ -446,6 +455,9 @@ class App extends CI_Controller {
 					// array_push($jawaban, [$penyakit_id => ['gejala_id' => $id ,'skor' => $skor ,'nilai' => $data]]);
 				}
 
+				// var_dump($past_kategori);
+				// die;
+
 				$max_skor = 0.0;
 				$kategori = "";
 				$solusi = "";
@@ -460,7 +472,13 @@ class App extends CI_Controller {
 
 				$data['hasil'] = $kategori;
 				$data['solusi'] = $solusi;
-				$data['akurasi'] = (float)$max_skor * 100;
+				$data['kepercayaan'] = (float)$max_skor * 100;
+
+				// echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~<br>";
+				// var_dump($data['hasil']);
+				// var_dump($data['solusi']);
+				// var_dump($data['kepercayaan']);
+				// die;
 
 				// akan menyimpan riwayat ketika sudah login
 				if($this->session->userdata('sess_user_id')) {
