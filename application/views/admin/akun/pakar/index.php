@@ -84,7 +84,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="<?= base_url('admin/gejala/add') ?>" method="post">
+      <form action="<?= base_url('admin/akun/pakar/add') ?>" method="post">
         <div class="modal-body">
           <div class="form-group">
             <label>Nama Lengkap</label>
