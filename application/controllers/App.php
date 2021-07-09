@@ -169,11 +169,13 @@ class App extends CI_Controller {
 
 			if($this->crud->insert($data, 'users')) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil registrasi.</div>');
+				
+				redirect('app/login');
 			} else {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal registrasi.</div>');
-			}
 
-			redirect('app/register');
+				redirect('app/register');
+			}
 		}
 	}
 

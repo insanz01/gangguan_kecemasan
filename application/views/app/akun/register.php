@@ -23,6 +23,11 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
+          <?php if($this->session->flashdata('pesan')): ?>
+            <div class="col-7 mx-auto">
+              <?= $this->session->flashdata('pesan'); ?>
+            </div>
+          <?php endif; ?>
           <div class="col-7 mx-auto">
             <div class="card">
               <div class="card-body">
