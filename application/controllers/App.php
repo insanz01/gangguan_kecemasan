@@ -168,7 +168,13 @@ class App extends CI_Controller {
 			$data['is_active'] = 0;
 			$data['id'] = NULL;
 
-			if($this->crud->insert($data, 'users')) {
+			$success = false;
+
+			if($this->auth->username_exists($data['username']) && $this->auth->email_exists($data['email'])) {
+				$success = true;
+			}
+
+			if($this->crud->insert($data, 'users') && $success) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil registrasi. Silahkan periksa email untuk melakukan aktivasi.</div>');
 				
 				$subject = 'AKTIVASI AKUN';

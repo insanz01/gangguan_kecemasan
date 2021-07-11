@@ -59,6 +59,26 @@ class AuthModel extends CI_Model {
 		return $user;
 	}
 
+	public function username_exists($username) {
+		$data = $this->db->get_where('users', ['username' => $username])->row_array();
+
+		if($data) {
+			return false;
+		}
+
+		return true;
+	}
+
+	public function email_exists($email) {
+		$data = $this->db->get_where('users', ['email' => $email])->row_array();
+
+		if($data) {
+			return false;
+		}
+
+		return true;
+	}
+
 	public function change_password($email, $new_password) {
 		$this->db->set('password', $new_password);
 		$this->db->where('email', $email);
