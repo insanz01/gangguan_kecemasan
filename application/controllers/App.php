@@ -416,7 +416,7 @@ class App extends CI_Controller {
 								} elseif($last_kombinasi < 0 && $kombinasi < 0) {
 									$new_kombinasi = $last_kombinasi + $kombinasi * (1 + $last_kombinasi); 
 								} else {
-									$new_kombinasi = ($last_kombinasi + $kombinasi) / (1 - min([$last_kombinasi, $kombinasi]));
+									$new_kombinasi = ($last_kombinasi + $kombinasi) / (1 - min([abs($last_kombinasi), abs($kombinasi)]));
 								}
 
 								// echo "==============<br>";
