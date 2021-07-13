@@ -452,7 +452,7 @@ class App extends CI_Controller {
 							} elseif($last_kombinasi < 0 && $kombinasi < 0) {
 								$new_kombinasi = $last_kombinasi + $kombinasi * (1 + $last_kombinasi); 
 							} else {
-								$new_kombinasi = ($last_kombinasi + $kombinasi) / (1 - min([$last_kombinasi, $kombinasi]));
+								$new_kombinasi = ($last_kombinasi + $kombinasi) / (1 - min([abs($last_kombinasi), abs($kombinasi)]));
 							}
 	
 							$past_kategori[$penyakit_id] = $new_kombinasi;
@@ -465,7 +465,7 @@ class App extends CI_Controller {
 				// var_dump($past_kategori);
 				// die;
 
-				$max_skor = 0.0;
+				$max_skor = -1.0;
 				$kategori = "";
 				$solusi = "";
 
