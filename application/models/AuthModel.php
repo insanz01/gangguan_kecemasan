@@ -12,6 +12,10 @@ class AuthModel extends CI_Model {
 			$this->session->set_userdata('sess_role_id', $user['role_id']);
 			$this->session->set_userdata('sess_pasien_nama', $user['nama_lengkap']);
 
+			$this->db->set('login_attemp', date('Y-m-d H:i:s', time()));
+			$this->db->where('id', $user['id']);
+			$this->db->update('users');
+
 			return true;
 		} else {
 			if(!$user) {

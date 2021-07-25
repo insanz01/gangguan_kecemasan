@@ -18,51 +18,6 @@ class App extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
-	// member area
-	public function register_member () {
-
-		$this->form_validation->set_rules('NIK', 'NIK', 'required');
-		$this->form_validation->set_rules('nama', 'Nama', 'required');
-		$this->form_validation->set_rules('tempat_lahir', 'tempat_lahir', 'required');
-		$this->form_validation->set_rules('tanggal_lahir', 'tanggal_lahir', 'required');
-		$this->form_validation->set_rules('jenis_kelamin', 'jenis_kelamin', 'required');
-		$this->form_validation->set_rules('agama', 'agama', 'required');
-		$this->form_validation->set_rules('pekerjaan', 'pekerjaan', 'required');
-		$this->form_validation->set_rules('alamat', 'alamat', 'required');
-		$this->form_validation->set_rules('no_telp', 'no_telp', 'required');
-
-
-		if($this->form_validation->run() == FALSE) {
-
-			$id_terakhir = $this->crud->get_last('members');
-
-			if($id_terakhir) {
-				$data['ID'] = $id_terakhir['ID'] + 1;
-			} else {
-				$data['ID'] = 1;
-			}
-
-			$this->load->view('templates/header');
-			$this->load->view('templates/navbar');
-			$this->load->view('templates/sidebar');
-			$this->load->view('app/member/registrasi', $data);
-			$this->load->view('templates/footer');
-		} else {
-			$data = $this->input->post();
-
-			$data['created_at'] = date('Y-m-d H:i:s');
-			$data['updated_at'] = date('Y-m-d H:i:s');
-
-			if($this->crud->insert($data, 'members')) {
-				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Data berhasil ditambahkan</div>');
-			} else {
-				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Data gagal ditambahkan</div>');
-			}
-
-			redirect('app/members');
-		}
-
-	}
 
 	public function users ($aksi = NULL, $id = NULL) {
 
@@ -207,8 +162,8 @@ class App extends CI_Controller {
 		$config['protocol'] = 'smtp';
 		$config['smtp_host'] = 'ssl://smtp.googlemail.com';
 		$config['smtp_port'] = 465;
-		$config['smtp_user'] = 'firdaus1600018035@webmail.uad.ac.id';
-		$config['smtp_pass'] = '7884145zzz';
+		$config['smtp_user'] = 'linafiin01@gmail.com';
+		$config['smtp_pass'] = 'akmalbontok';
 		$config['mailtype'] = 'html';
 		$config['charset'] = 'iso-8859-1';
 
@@ -217,7 +172,7 @@ class App extends CI_Controller {
 
 		$this->email->set_newline("\r\n");
 
-		$this->email->from('firdaus1600018035@webmail.uad.ac.id', 'Admin Pakar');
+		$this->email->from('linafiin01@gmail.com', 'Admin Pakar');
 		$this->email->to($email);
 
 		$this->email->subject($subject);

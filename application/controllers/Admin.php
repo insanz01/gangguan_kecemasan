@@ -235,6 +235,15 @@ class Admin extends CI_Controller {
 		$this->image_lib->clear();
 	}
 
+	public function pasien() {
+		$data['pasien'] = [];
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/sidebar');
+		$this->load->view('admin/pasien/index', $data);
+		$this->load->view('templates/footer');
+	}
+
 	public function akun($role, $aksi = '') {
 		if($aksi == "add" and $role == 'pakar') {
 			$data = $this->input->post();

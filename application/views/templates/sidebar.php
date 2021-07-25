@@ -137,6 +137,15 @@
               </ul>
             </li>
           <?php elseif($this->session->userdata('sess_role_id') == 1): ?>
+            <li class="nav-header" style=" color: #252525; !important">PASIEN AREA</li>
+            <li class="nav-item">
+              <a href="<?= base_url('admin/pasien') ?>" class="nav-link" style=" color: #252525; !important">
+                <i class="nav-icon fas fa-hands-helping"></i>
+                <p>
+                  Data Pasien
+                </p>
+              </a>
+            </li>
             <li class="nav-header" style=" color: #252525; !important">ADMIN AREA</li>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link" style=" color: #252525; !important">
