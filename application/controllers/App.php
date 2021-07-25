@@ -436,6 +436,7 @@ class App extends CI_Controller {
 
 				$data['hasil'] = $kategori;
 				$data['solusi'] = $solusi;
+				$data['solusi'] = $keterangan;
 				$data['kepercayaan'] = (float)$max_skor * 100;
 
 				// echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~<br>";
