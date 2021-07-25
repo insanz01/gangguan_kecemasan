@@ -70,7 +70,7 @@ class CRUDModel extends CI_Model {
 	}
 
 	public function get_keterangan_text($id) {
-		$data = $this->db->get_where('keterangan', ['id' => $id])->row_array();
+		$data = $this->db->get_where('penyakit', ['id' => $id])->row_array();
 
 		$solusi = $data['keterangan'];
 
