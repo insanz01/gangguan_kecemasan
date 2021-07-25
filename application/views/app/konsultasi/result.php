@@ -28,7 +28,7 @@
             <hr class="text-center">
 
             <div class="row">
-              <div class="col-8 mx-auto">
+              <div class="col-6 mx-auto">
                 <div class="card">
                   <div class="card-body">
                     <div class="row">
@@ -47,12 +47,24 @@
                   </div>
                 </div>
               </div>
-              <div class="col-4">
-                <div class="card">
-                  <div class="card-body">
-                    <h3>Solusi dan Saran</h3>
-                    <hr>
-                    <p align="justify"><?= $solusi ?></p>
+              <div class="col-6">
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h3>Solusi dan Saran</h3>
+                      <hr>
+                      <p align="justify"><?= $solusi ?></p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="card">
+                    <div class="card-body">
+                      <h3>Keterangan Penyakit</h3>
+                      <hr>
+                      <p align="justify"><?= $keterangan ?></p>
+                    </div>
                   </div>
                 </div>
               </div>

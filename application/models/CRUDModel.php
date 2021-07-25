@@ -69,4 +69,12 @@ class CRUDModel extends CI_Model {
 		return $solusi;	
 	}
 
+	public function get_keterangan_text($id) {
+		$data = $this->db->get_where('keterangan', ['id' => $id])->row_array();
+
+		$solusi = $data['keterangan'];
+
+		return $solusi;	
+	}
+
 }
