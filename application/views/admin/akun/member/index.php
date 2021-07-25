@@ -40,10 +40,11 @@
                 <table class="table table-striped tabled-bordered">
                   <thead>
                     <th style="width: 5%">#</th>
-                    <th style="width: 20%">Username</th>
+                    <th style="width: 15%">Username</th>
                     <th style="width: 20%">Nama Pengguna</th>
                     <th style="width: 25%">Email</th>
-                    <th style="width: 20%">Created At</th>
+                    <th style="width: 15%">Terakhir Login</th>
+                    <th style="width: 10%">Created At</th>
                     <th style="width: 10%">Aksi</th>
                   </thead>
                   <tbody>
@@ -54,7 +55,15 @@
                         <td><?= $u['username'] ?></td>
                         <td><?= $u['nama_lengkap'] ?></td>
                         <td><?= $u['email'] ?></td>
-                        <td><?= $u['created_at'] ?></td>
+                        <td>
+                          <?php if($u['last_login'] < 1): ?>
+                            < 1
+                          <?php else: ?>
+                            <?= $u['last_login'] ?>
+                          <?php endif; ?>
+                          hari
+                        </td>
+                        <td><?= date('d M Y', strtotime($u['created_at'])) ?></td>
                         <td>
                           <!-- <a href="#!" id-certainty="<?= $c['id'] ?>" onclick="show_data(this)" role="button" class="badge badge-sm badge-info badge-pill" data-toggle="modal" data-target="#editModal">Edit</a> -->
                           <!-- <a href="<?= base_url('Admin/certainty/delete/') . $c['id'] ?>" class="badge badge-sm badge-danger badge-pill">Hapus</a> -->

@@ -263,7 +263,10 @@ class Admin extends CI_Controller {
 			$page = "";
 
 			if($role == "pakar") {
-				$data['user'] = $this->admin->get_userdata('pakar');
+				$users = $this->admin->get_userdata('pakar');
+
+				$data['user'] = $users;
+
 				$page = "admin/akun/pakar/index";
 			} elseif($role == "member") {
 				$data['user'] = $this->admin->get_userdata('member');

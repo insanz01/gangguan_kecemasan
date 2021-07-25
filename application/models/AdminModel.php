@@ -15,7 +15,7 @@ class AdminModel extends CI_Model {
 
 	public function get_userdata($role) {
 		$role_id = ($role == "pakar") ? 3 : 2;
-		$query = "SELECT * FROM users WHERE role_id = $role_id";
+		$query = "SELECT users.id, users.username, users.nama_lengkap, users.email, users.role_id, users.created_at, DATEDIFF(users.login_attemp, CURDATE()) as last_login FROM users WHERE role_id = $role_id";
 
 		return $this->db->query($query)->result_array();
 	}
