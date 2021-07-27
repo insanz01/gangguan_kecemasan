@@ -497,7 +497,8 @@ class App extends CI_Controller {
 		$penyakit = $this->crud->get('penyakit');
 		$gejala = $this->crud->get('gejala');
 
-		$data['edukasi'] = array_merge($penyakit, $gejala);
+		// $data['edukasi'] = array_merge($penyakit, $gejala);
+		$data['edukasi'] = $penyakit;
 
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');

@@ -7,7 +7,7 @@ class Api extends CI_Controller {
 		$this->load->model('CRUDModel', 'crud');
 	}
 
-	public function certainty($aksi = NULL,$id = NULL) {
+	public function certainty($aksi = NULL, $id = NULL) {
 		if($aksi == 'get') {
 			$data = $this->crud->get('certainty', $id);
 
@@ -15,7 +15,7 @@ class Api extends CI_Controller {
 		}
 	}
 
-	public function penyakit($aksi = NULL,$id = NULL) {
+	public function penyakit($aksi = NULL, $id = NULL) {
 		if($aksi == 'get') {
 			$data = $this->crud->get('penyakit', $id);
 
@@ -23,7 +23,7 @@ class Api extends CI_Controller {
 		}
 	}
 
-	public function gejala($aksi = NULL,$id = NULL) {
+	public function gejala($aksi = NULL, $id = NULL) {
 		if($aksi == 'get') {
 			$data = $this->crud->get('gejala', $id);
 

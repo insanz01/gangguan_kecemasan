@@ -27,7 +27,7 @@
           <div class="form-group">
             <div class="row">
               <div class="col-10">
-                <input type="text" name="cari" class="form-control" placeholder="Search">
+                <input type="text" name="cari" class="form-control" onkeyup="search(this)" placeholder="Search">
               </div>
               <div class="col-2">
                 <button type="submit" class="btn btn-primary">Cari Sekarang</button>
@@ -44,7 +44,7 @@
                   <th style="width: 90%"></th>
                   <th style="width: 10%"></th>
                 </thead>
-                <tbody>
+                <tbody id="list-edukasi">
                   <?php foreach($edukasi as $e): ?>
                     <tr>
                       <td><?= $e['nama'] ?></td>
@@ -90,6 +90,8 @@
 </div>
 
 <script type="text/javascript">
+
+  let edukasi = [];
   
   const showDetail = (target) => {
     const nama = target.getAttribute('info-nama');
@@ -101,4 +103,55 @@
     infoNama.innerText = nama;
     infoDetail.innerText = keterangan;
   }
+
+  const getData = async () => {
+    return await axios.get("<?= base_url('api/penyakit/get') ?>").then(res => res.data);
+  }
+
+  const search = (target) => {
+    const listEdukasi = document.getElementById('list-edukasi');
+
+    if(target.value == "") {
+      let temp = '';
+      edukasi.forEach(res => {
+        temp += `<tr>
+                <td>${res.nama}</td>
+                <td>
+                  <a href="#!" role="button" class="badge badge-sm badge-pill badge-info" data-toggle="modal" data-target="#showModal" info-nama="<?= $e['nama'] ?>" info-detail="${res.keterangan}" onclick="showDetail(this)">Lihat Detail</a>
+                </td>
+              </tr>`;
+      });
+
+      listEdukasi.innerHTML = temp;
+
+      return;
+    }
+
+    const filter = edukasi.filter((res) => {
+      const newString = res.nama.toUpperCase();
+      const targetValue = target.value.toUpperCase();
+
+      return newString.indexOf(targetValue) !== -1;
+    });
+
+    let temp = ``;
+
+    filter.forEach(res => {
+      temp += `<tr>
+                <td>${res.nama}</td>
+                <td>
+                  <a href="#!" role="button" class="badge badge-sm badge-pill badge-info" data-toggle="modal" data-target="#showModal" info-nama="<?= $e['nama'] ?>" info-detail="${res.keterangan}" onclick="showDetail(this)">Lihat Detail</a>
+                </td>
+              </tr>`;
+    });
+
+    listEdukasi.innerHTML = temp;
+  }
+
+  window.addEventListener('load', async () => {
+    console.log('selalu berjalan di awal');
+    edukasi = await getData().then(res => res);
+
+    console.log(edukasi);
+  });
 </script>
