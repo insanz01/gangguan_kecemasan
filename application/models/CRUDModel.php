@@ -12,7 +12,8 @@ class CRUDModel extends CI_Model {
 		$data['created_at'] = date('Y-m-d H:i:s', time());
 		$data['updated_at'] = date('Y-m-d H:i:s', time());
 
-		return $this->db->insert($table, $data);
+		$this->db->insert($table, $data);
+		return $this->db->insert_id();
 	}
 
 	public function get($table, $id = NULL) {
@@ -35,6 +36,10 @@ class CRUDModel extends CI_Model {
 
 	public function delete($table, $id) {
 		return $this->db->delete($table, ['id' => $id]);
+	}
+
+	public function custom_delete($table, $data) {
+		return $this->db->delete($table, $data);
 	}
 
 	// fungsi aktivasi

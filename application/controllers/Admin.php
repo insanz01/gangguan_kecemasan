@@ -244,7 +244,7 @@ class Admin extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
-	public function akun($role, $aksi = '') {
+	public function akun($role, $aksi = '', $paramId = NULL) {
 		if($aksi == "add" and $role == 'pakar') {
 			$data = $this->input->post();
 			$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -258,6 +258,48 @@ class Admin extends CI_Controller {
 			}
 			
 			redirect('admin/akun/pakar');
+		} else if ($aksi == "update" and ($role == 'pakar' or $role == 'member')) {
+			$id = $this->input->post('id');
+			$data = [
+				'nama_lengkap' => $this->input->post('nama_lengkap'),
+				'email' => $this->input->post('email')
+			];
+
+			if($this->crud->update($data, 'users', $id)) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil merubah data</div>');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal merubah data</div>');
+			}
+
+			$redirectPage = ($role == "pakar") ? 'admin/akun/pakar' : 'admin/akun/member';
+
+			redirect($redirectPage);
+		} else if($aksi == "delete") {
+			$data = [];
+			$redirectPage = "";
+			if($role == "pakar") {
+				$data = [
+					'id' => $paramId,
+					'role_id' => 3
+				];
+
+				$redirectPage = 'admin/akun/pakar';
+			} else {
+				$data = [
+					'id' => $paramId,
+					'role_id' => 2
+				];
+
+				$redirectPage = 'admin/akun/member';
+			}
+			
+			if($this->crud->custom_delete('users', $data)) {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil menghapus data</div>');
+			} else {
+				$this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Gagal menghapus data</div>');
+			}
+
+			redirect($redirectPage);
 		} else {
 			$data = [];
 			$page = "";

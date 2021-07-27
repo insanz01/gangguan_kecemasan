@@ -273,7 +273,8 @@ class App extends CI_Controller {
 				$user_data = [
 					'sess_pasien_nama' => $this->input->post('nama'),
 					'sess_pasien_umur' => $this->input->post('umur'),
-					'sess_pasien_jenis_kelamin' => $this->input->post('jenis_kelamin')
+					'sess_pasien_jenis_kelamin' => $this->input->post('jenis_kelamin'),
+					'sess_pasien_nomor_hp' => $this->input->post('nomor_hp')
 				];
 
 				$this->session->set_userdata($user_data);
@@ -447,12 +448,20 @@ class App extends CI_Controller {
 
 				// akan menyimpan riwayat ketika sudah login
 				if($this->session->userdata('sess_user_id')) {
-					$riwayat = [
+					$pasien = [
 						'id' => NULL,
-						'user_id' => $this->session->userdata('sess_user_id'),
 						'nama' => $this->session->userdata('sess_pasien_nama'),
 						'umur' => $this->session->userdata('sess_pasien_umur'),
 						'jenis_kelamin' => $this->session->userdata('sess_pasien_jenis_kelamin'),
+						'nomor_hp' => $this->session->userdata('sess_pasien_nomor_hp')
+					];
+
+					$pasien_id = $this->crud->insert($pasien, 'pasien');
+
+					$riwayat = [
+						'id' => NULL,
+						'user_id' => $this->session->userdata('sess_user_id'),
+						'pasien_id' => $pasien_id,
 						'tanggal_konsultasi' => date('Y-m-d', time()),
 						'diagnosis' => $kategori,
 						'solusi' => $solusi

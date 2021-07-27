@@ -41,6 +41,10 @@
                         <input type="number" name="umur" min=1 class="form-control" placeholder="Masukkan Umur" required>
                       </div>
                       <div class="form-group">
+                        <label>Nomor HP</label>
+                        <input type="text" name="nomor_hp" class="form-control" placeholder="Masukkan Nomor HP (WA)" required>
+                      </div>
+                      <div class="form-group">
                         <label>Jenis Kelamin</label>
                         <br>
                         <input type="radio" name="jenis_kelamin" value="Laki-laki" checked> Laki-laki

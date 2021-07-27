@@ -30,4 +30,12 @@ class Api extends CI_Controller {
 			echo json_encode($data, JSON_PRETTY_PRINT);
 		}
 	}
+
+	public function user($aksi = NULL, $id = NULL) {
+		if($aksi == 'get') {
+			$data = $this->crud->get('users', $id);
+
+			echo json_encode($data, JSON_PRETTY_PRINT);
+		}
+	}
 }
