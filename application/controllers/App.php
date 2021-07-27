@@ -95,7 +95,10 @@ class App extends CI_Controller {
 
 			if($this->auth->login($data)) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Login Berhasil</div>');
-
+				if($this->session->userdata('sess_role_id') == 1) {
+					redirect('admin/dashboard');
+				}
+				
 				redirect('app/index');
 			} else {
 				// $this->session->set_flashdata('pesan', '<div class="alert alert-danger" role="alert">Login Gagal</div>');

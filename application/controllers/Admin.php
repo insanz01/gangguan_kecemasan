@@ -8,6 +8,20 @@ class Admin extends CI_Controller {
 		$this->load->model('AdminModel', 'admin');
 	}
 
+	public function dashboard() {
+		$data['total_penyakit'] = $this->admin->total_data('penyakit');
+		$data['total_gejala'] = $this->admin->total_data('gejala');
+		$data['total_pasien'] = $this->admin->total_data('pasien');
+		$data['total_member'] = $this->admin->total_data('users', ['role_id' => 2]);
+		$data['total_pakar'] = $this->admin->total_data('users', ['role_id' => 3]);
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/sidebar');
+		$this->load->view('admin/dashboard', $data);
+		$this->load->view('templates/footer');
+	}
+
 	public function gejala($aksi = NULL, $id = NULL) {
 		if($aksi == 'add') {
 			$data = $this->input->post();

@@ -19,4 +19,12 @@ class AdminModel extends CI_Model {
 
 		return $this->db->query($query)->result_array();
 	}
+
+	public function total_data($table, $condition = NULL) {
+		if($condition) {
+			return $this->db->get_where($table, $condition)->num_rows();
+		} else {
+			return $this->db->get($table)->num_rows();
+		}
+	}
 }

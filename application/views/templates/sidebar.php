@@ -43,15 +43,25 @@
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
              <!-- tambah class menu-open untuk secara otomatis membuka -->
-        <li class="nav-item">
-          <a href="<?= base_url('app/index') ?>" class="nav-link" style=" color: #252525; !important">
-            <i class="nav-icon fas fa-home"></i>
-            <p>
-              Dashboard
-              <!-- <span class="badge badge-info right">2</span> -->
-            </p>
-          </a>
-        </li>
+          <?php if($this->session->userdata('sess_role_id') == 1): ?>
+            <li class="nav-item">
+              <a href="<?= base_url('admin/dashboard') ?>" class="nav-link" style=" color: #252525; !important">
+                <i class="nav-icon fas fa-home"></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+            </li>
+          <?php else: ?>
+            <li class="nav-item">
+              <a href="<?= base_url('app/index') ?>" class="nav-link" style=" color: #252525; !important">
+                <i class="nav-icon fas fa-home"></i>
+                <p>
+                  Dashboard
+                </p>
+              </a>
+            </li>
+          <?php endif; ?>
         <?php if($this->session->userdata('sess_role_id') != 1): ?>
           <li class="nav-item">
             <a href="<?= base_url('app/konsultasi') ?>" class="nav-link" style=" color: #252525; !important">
