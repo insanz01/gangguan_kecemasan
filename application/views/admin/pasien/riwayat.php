@@ -6,7 +6,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Riwayat</h1>
+            <h1 class="m-0 text-dark">Riwayat Pasien</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -24,15 +24,14 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-10 mx-auto">
-            <h3 class="display-4 text-center">Riwayat Pasien</h3>
-            <hr class="text-center">
 
             <div class="row">
               <div class="col-12 mb-1">
                 <div class="card">
-                  <div class="card-body">
-                    <h1><?= $pasien['nama'] ?></h1>
-                    <p>Umur <?= $pasien['umur'] ?> tahun</p>
+                  <div class="card-body text-center">
+                    <h1 class="display-4"><?= strtoupper($pasien['nama']) ?></h1>
+                    <p class="lead">Umur <?= $pasien['umur'] ?> tahun</p>
+                    <hr>
                   </div>
                 </div>
               </div>
@@ -50,12 +49,12 @@
                           </thead>
                           <tbody>
                             <?php $nomor = 1; ?>
-                            <?php foreach($pasien as $p): ?>
+                            <?php foreach($riwayat as $r): ?>
                               <tr>
                                 <td><?= $nomor++ ?></td>
-                                <td><?= $p['tanggal_solusi'] ?></td>
-                                <td><?= $p['diagnosis'] ?></td>
-                                <td><?= $p['solusi'] ?></td>
+                                <td><?= date('d M Y', strtotime($r['tanggal_konsultasi'])) ?></td>
+                                <td><?= $r['diagnosis'] ?></td>
+                                <td><?= $r['solusi'] ?></td>
                               </tr>
                             <?php endforeach; ?>
                           </tbody>
