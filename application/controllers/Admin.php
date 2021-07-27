@@ -235,13 +235,29 @@ class Admin extends CI_Controller {
 		$this->image_lib->clear();
 	}
 
-	public function pasien() {
-		$data['pasien'] = [];
-		$this->load->view('templates/header');
-		$this->load->view('templates/navbar');
-		$this->load->view('templates/sidebar');
-		$this->load->view('admin/pasien/index', $data);
-		$this->load->view('templates/footer');
+	public function pasien($aksi = "", $paramId = "") {
+		if($aksi == "riwayat") {
+			$custom = [
+				'pasien_id' => $paramId
+			];
+			
+			$data['pasien'] = $this->crud->get('pasien', $paramId);
+			$data['riwayat'] = $this->crud->custom_get('riwayat', $custom);
+
+			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidebar');
+			$this->load->view('admin/pasien/riwayat', $data);
+			$this->load->view('templates/footer');
+		} else {
+			$data['pasien'] = $this->crud->get('pasien');
+
+			$this->load->view('templates/header');
+			$this->load->view('templates/navbar');
+			$this->load->view('templates/sidebar');
+			$this->load->view('admin/pasien/index', $data);
+			$this->load->view('templates/footer');
+		}
 	}
 
 	public function akun($role, $aksi = '', $paramId = NULL) {

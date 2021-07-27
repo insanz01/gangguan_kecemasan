@@ -24,6 +24,10 @@ class CRUDModel extends CI_Model {
 		}
 	}
 
+	public function custom_get($table, $data) {
+		return $this->db->get_where($table, $data)->result_array();
+	}
+
 	public function update($data, $table, $id) {
 		$data['updated_at'] = date('Y-m-d H:i:s', time());
 
