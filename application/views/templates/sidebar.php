@@ -63,15 +63,17 @@
             </li>
           <?php endif; ?>
         <?php if($this->session->userdata('sess_role_id') != 1): ?>
-          <li class="nav-item">
-            <a href="<?= base_url('app/konsultasi') ?>" class="nav-link" style=" color: #252525; !important">
-              <i class="nav-icon fas fa-person-booth"></i>
-              <p>
-                Konsultasi
-                <!-- <span class="badge badge-info right">2</span> -->
-              </p>
-            </a>
-          </li>
+          <?php if($this->session->userdata('sess_role_id')): ?>
+            <li class="nav-item">
+              <a href="<?= base_url('app/konsultasi') ?>" class="nav-link" style=" color: #252525; !important">
+                <i class="nav-icon fas fa-person-booth"></i>
+                <p>
+                  Konsultasi
+                  <!-- <span class="badge badge-info right">2</span> -->
+                </p>
+              </a>
+            </li>
+          <?php endif; ?>
           <li class="nav-item">
             <a href="<?= base_url('app/edukasi') ?>" class="nav-link" style=" color: #252525; !important">
               <i class="nav-icon fas fa-book"></i>
