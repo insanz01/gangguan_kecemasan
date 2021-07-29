@@ -50,7 +50,11 @@
                           <?php endforeach; ?>
                         <?php else: ?>
                           <tr>
-                            <td colspan="4" class="text-center">Tidak ada riwayat. Anda belum <a href="<?= base_url('app/login') ?>">login</a></td>
+                            <?php if($this->session->userdata('sess_role_id')): ?>
+                              <td colspan="4" class="text-center">Tidak ada riwayat pasien pada akun ini.</td>
+                            <?php else: ?>
+                              <td colspan="4" class="text-center">Tidak ada riwayat. Anda belum <a href="<?= base_url('app/login') ?>">login</a></td>
+                            <?php endif; ?>
                           </tr>
                         <?php endif; ?>
                       </tbody>
