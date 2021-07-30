@@ -165,8 +165,8 @@ class App extends CI_Controller {
 		$config['protocol'] = 'smtp';
 		$config['smtp_host'] = 'ssl://smtp.googlemail.com';
 		$config['smtp_port'] = 465;
-		$config['smtp_user'] = 'linafiin01@gmail.com';
-		$config['smtp_pass'] = 'akmalbontok';
+		$config['smtp_user'] = 'yourmail@gmail.com';
+		$config['smtp_pass'] = '*********';
 		$config['mailtype'] = 'html';
 		$config['charset'] = 'iso-8859-1';
 
@@ -175,13 +175,14 @@ class App extends CI_Controller {
 
 		$this->email->set_newline("\r\n");
 
-		$this->email->from('linafiin01@gmail.com', 'Admin Pakar');
+		$this->email->from('yourmail@gmail.com', 'Gangguan Kecemasan');
 		$this->email->to($email);
 
 		$this->email->subject($subject);
 		$this->email->message($message);
 
-		$this->email->send();		
+		$this->email->send();
+		// var_dump($this->email->send()); die;
 	}
 
 	public function forgot($aksi = '') {
