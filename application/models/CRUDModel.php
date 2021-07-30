@@ -86,4 +86,14 @@ class CRUDModel extends CI_Model {
 		return $solusi;	
 	}
 
+	public function inserted_pasien($nomor_hp) {
+		$pasien = $this->db->get_where('pasien', ['nomor_hp' => $nomor_hp])->row_array();
+
+		if($pasien) {
+			return $pasien['id'];
+		}
+
+		return false;
+	}
+
 }

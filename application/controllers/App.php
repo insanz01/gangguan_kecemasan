@@ -460,7 +460,11 @@ class App extends CI_Controller {
 						'nomor_hp' => $this->session->userdata('sess_pasien_nomor_hp')
 					];
 
-					$pasien_id = $this->crud->insert($pasien, 'pasien');
+					$pasien_id = $this->crud->inserted_pasien($pasien['nomor_hp']);
+
+					if(!$pasien_id) {
+						$pasien_id = $this->crud->insert($pasien, 'pasien');
+					}
 
 					$riwayat = [
 						'id' => NULL,
