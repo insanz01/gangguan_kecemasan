@@ -1,11 +1,11 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background: #87cefa !important;">
   <!-- Brand Logo -->
-  <a href="<?= base_url('app/index') ?>" class="brand-link">
+  <!-- <a href="<?= base_url('app/index') ?>" class="brand-link">
     <img src="<?= base_url() ?>assets/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
          style="opacity: .8">
     <span class="brand-text font-weight-light" style=" color: #252525; !important">Diagnosis SP</span>
-  </a>
+  </a> -->
 
   <!-- Sidebar -->
   <div class="sidebar">
@@ -112,6 +112,16 @@
           </li>
         <?php else: ?>
           <?php if($this->session->userdata('sess_role_id') == 3): ?>
+            <li class="nav-header" style=" color: #252525; !important">PASIEN AREA</li>
+            <li class="nav-item">
+              <a href="<?= base_url('admin/pasien') ?>" class="nav-link" style=" color: #252525; !important">
+                <i class="nav-icon fas fa-hands-helping"></i>
+                <p>
+                  Data Pasien
+                </p>
+              </a>
+            </li>
+            
             <li class="nav-header" style=" color: #252525; !important">PAKAR AREA</li>
             <li class="nav-item has-treeview">
               <a href="#" class="nav-link" style=" color: #252525; !important">
