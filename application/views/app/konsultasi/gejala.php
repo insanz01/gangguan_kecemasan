@@ -45,12 +45,12 @@
                               <td><?= $nomor++ ?></td>
                               <td>Apakah anda <strong><?= $p['nama_gejala'] ?></strong> ?</td>
                               <td>
-                                <input type="radio" name="gejala-<?= $p['id'] ?>-<?= $p['skor'] ?>-<?= $p['penyakit_id'] ?>" value="0" checked> Tidak <br>
-                                <input type="radio" name="gejala-<?= $p['id'] ?>-<?= $p['skor'] ?>-<?= $p['penyakit_id'] ?>" value="1"> Tidak Tahu <br>
-                                <input type="radio" name="gejala-<?= $p['id'] ?>-<?= $p['skor'] ?>-<?= $p['penyakit_id'] ?>" value="2"> Sedikit Yakin <br>
-                                <input type="radio" name="gejala-<?= $p['id'] ?>-<?= $p['skor'] ?>-<?= $p['penyakit_id'] ?>" value="3"> Cukup Yakin <br>
-                                <input type="radio" name="gejala-<?= $p['id'] ?>-<?= $p['skor'] ?>-<?= $p['penyakit_id'] ?>" value="4"> Yakin <br>
-                                <input type="radio" name="gejala-<?= $p['id'] ?>-<?= $p['skor'] ?>-<?= $p['penyakit_id'] ?>" value="5"> Sangat Yakin <br>
+                                <input type="radio" name="gejala-<?= $p['id'] ?>-<?= $p['skor'] ?>-<?= $p['penyakit_id'] ?>" value="0" required> Tidak <br>
+                                <input type="radio" name="gejala-<?= $p['id'] ?>-<?= $p['skor'] ?>-<?= $p['penyakit_id'] ?>" value="1" required> Tidak Tahu <br>
+                                <input type="radio" name="gejala-<?= $p['id'] ?>-<?= $p['skor'] ?>-<?= $p['penyakit_id'] ?>" value="2" required> Sedikit Yakin <br>
+                                <input type="radio" name="gejala-<?= $p['id'] ?>-<?= $p['skor'] ?>-<?= $p['penyakit_id'] ?>" value="3" required> Cukup Yakin <br>
+                                <input type="radio" name="gejala-<?= $p['id'] ?>-<?= $p['skor'] ?>-<?= $p['penyakit_id'] ?>" value="4" required> Yakin <br>
+                                <input type="radio" name="gejala-<?= $p['id'] ?>-<?= $p['skor'] ?>-<?= $p['penyakit_id'] ?>" value="5" required> Sangat Yakin <br>
                               </td>
                             </tr>
                           <?php endforeach; ?>

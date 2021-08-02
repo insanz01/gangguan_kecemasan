@@ -91,14 +91,14 @@
               </p>
             </a>
           </li> -->
-          <li class="nav-item">
+          <!-- <li class="nav-item">
             <a href="<?= base_url('app/bantuan') ?>" class="nav-link" style=" color: #252525; !important">
               <i class="nav-icon fas fa-hands-helping"></i>
               <p>
                 Bantuan
               </p>
             </a>
-          </li>
+          </li> -->
         <?php endif; ?>
         <?php if(!$this->session->userdata('sess_user_id')): ?>
           <li class="nav-item">
