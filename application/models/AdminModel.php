@@ -8,7 +8,7 @@ class AdminModel extends CI_Model {
 	}
 
 	public function riwayat_konsultasi($user_id) {
-		$query = "SELECT riwayat.id, pasien.nama, riwayat.tanggal_konsultasi, riwayat.diagnosis, riwayat.solusi FROM riwayat JOIN users ON riwayat.user_id = users.id JOIN pasien ON pasien.id = riwayat.pasien_id WHERE users.id = $user_id";
+		$query = "SELECT riwayat.id, riwayat.penyakit_id, pasien.nama, riwayat.tanggal_konsultasi, riwayat.diagnosis, riwayat.solusi FROM riwayat JOIN users ON riwayat.user_id = users.id JOIN pasien ON pasien.id = riwayat.pasien_id WHERE users.id = $user_id";
 
 		return $this->db->query($query)->result_array();
 	}

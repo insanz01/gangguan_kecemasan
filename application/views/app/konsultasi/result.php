@@ -61,17 +61,11 @@ Content Wrapper. Contains page content -->
                       <p align="justify"><?= $solusi ?></p>
 
                       <?php if($penyakit_id != 13): ?>
-                        <!-- <div class="col-12"> -->
-                          <!-- <div class="card"> -->
-                            <!-- <div class="card-body text-center"> -->
-                               <audio controls>
-                                <!-- <source src="horse.ogg" type="audio/ogg"> -->
-                                <source src="<?= base_url() ?>assets/relaksasi/audio.mp3" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                              </audio> 
-                            <!-- </div> -->
-                          <!-- </div> -->
-                        <!-- </div> -->
+                         <audio class="mt-2" controls>
+                          <!-- <source src="horse.ogg" type="audio/ogg"> -->
+                          <source src="<?= base_url() ?>assets/relaksasi/audio.mp3" type="audio/mpeg">
+                          Your browser does not support the audio element.
+                        </audio>
                       <?php endif; ?>
                     </div>
                   </div>

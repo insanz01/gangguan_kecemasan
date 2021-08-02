@@ -473,6 +473,7 @@ class App extends CI_Controller {
 						'id' => NULL,
 						'user_id' => $this->session->userdata('sess_user_id'),
 						'pasien_id' => $pasien_id,
+						'penyakit_id' => $penyakit_id,
 						'tanggal_konsultasi' => date('Y-m-d', time()),
 						'diagnosis' => $kategori,
 						'solusi' => $solusi

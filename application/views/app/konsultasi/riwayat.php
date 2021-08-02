@@ -37,6 +37,7 @@
                         <th>Tanggal Konsultasi</th>
                         <th>Diagnosis</th>
                         <th>Solusi Penanganan</th>
+                        <th>Audio Terapi</th>
                       </thead>
                       <tbody>
                         <?php if($riwayat != []): ?>
@@ -46,14 +47,23 @@
                               <td><?= date('d/m/Y', strtotime($r['tanggal_konsultasi'])) ?></td>
                               <td><?= $r['diagnosis'] ?></td>
                               <td><?= $r['solusi'] ?></td>
+                              <td>
+                                <?php if($r['id'] != 13): ?>
+                                   <audio class="mt-2" controls>
+                                    <!-- <source src="horse.ogg" type="audio/ogg"> -->
+                                    <source src="<?= base_url() ?>assets/relaksasi/audio.mp3" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                  </audio>
+                                <?php endif; ?>
+                              </td>
                             </tr>
                           <?php endforeach; ?>
                         <?php else: ?>
                           <tr>
                             <?php if($this->session->userdata('sess_role_id')): ?>
-                              <td colspan="4" class="text-center">Tidak ada riwayat pasien pada akun ini.</td>
+                              <td colspan="5" class="text-center">Tidak ada riwayat pasien pada akun ini.</td>
                             <?php else: ?>
-                              <td colspan="4" class="text-center">Tidak ada riwayat. Anda belum <a href="<?= base_url('app/login') ?>">login</a></td>
+                              <td colspan="5" class="text-center">Tidak ada riwayat. Anda belum <a href="<?= base_url('app/login') ?>">login</a></td>
                             <?php endif; ?>
                           </tr>
                         <?php endif; ?>
