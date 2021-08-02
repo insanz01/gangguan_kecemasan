@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+Content Wrapper. Contains page content -->
   <div class="content-wrapper">
 
     <!-- Content Header (Page header) -->
@@ -49,19 +49,7 @@
                       </div>
                     </div>
                   </div>
-                  <?php if($penyakit_id != 13): ?>
-                    <div class="col-12">
-                      <div class="card">
-                        <div class="card-body text-center">
-                           <audio controls>
-                            <!-- <source src="horse.ogg" type="audio/ogg"> -->
-                            <source src="<?= base_url() ?>assets/relaksasi/audio.mp3" type="audio/mpeg">
-                            Your browser does not support the audio element.
-                          </audio> 
-                        </div>
-                      </div>
-                    </div>
-                  <?php endif; ?>
+                  
                 </div>
               </div>
               <div class="col-6">
@@ -71,6 +59,20 @@
                       <h3>Solusi dan Saran</h3>
                       <hr>
                       <p align="justify"><?= $solusi ?></p>
+
+                      <?php if($penyakit_id != 13): ?>
+                        <!-- <div class="col-12"> -->
+                          <!-- <div class="card"> -->
+                            <!-- <div class="card-body text-center"> -->
+                               <audio controls>
+                                <!-- <source src="horse.ogg" type="audio/ogg"> -->
+                                <source src="<?= base_url() ?>assets/relaksasi/audio.mp3" type="audio/mpeg">
+                                Your browser does not support the audio element.
+                              </audio> 
+                            <!-- </div> -->
+                          <!-- </div> -->
+                        <!-- </div> -->
+                      <?php endif; ?>
                     </div>
                   </div>
                 </div>
@@ -93,4 +95,4 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
+  <!-- /.content-wrapper
