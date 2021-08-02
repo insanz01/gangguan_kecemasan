@@ -29,22 +29,39 @@
 
             <div class="row">
               <div class="col-6 mx-auto">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col text-center">
-                        <?php $gambar = mt_rand(1, 10); ?>
-                        <img src="<?= base_url('assets/penyakit/') . strval($gambar) . '.jpg' ?>" alt="Gambar" width="300">
-                        <h3 class="display-5">
-                          <?= $hasil ?>
-                        </h3>
-                        <hr>
-                        <p class="lead <?= ($kepercayaan > 0) ? 'text-success': 'text-danger' ?>">
-                          Nilai Kepercayaan <?= $kepercayaan . '%' ?>
-                        </p>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col text-center">
+                            <?php $gambar = mt_rand(1, 10); ?>
+                            <img src="<?= base_url('assets/penyakit/') . strval($gambar) . '.jpg' ?>" alt="Gambar" width="300">
+                            <h3 class="display-5">
+                              <?= $hasil ?>
+                            </h3>
+                            <hr>
+                            <p class="lead <?= ($kepercayaan > 0) ? 'text-success': 'text-danger' ?>">
+                              Nilai Kepercayaan <?= $kepercayaan . '%' ?>
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
+                  <?php if($penyakit_id != 13): ?>
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-body text-center">
+                           <audio controls>
+                            <!-- <source src="horse.ogg" type="audio/ogg"> -->
+                            <source src="<?= base_url() ?>assets/relaksasi/audio.mp3" type="audio/mpeg">
+                            Your browser does not support the audio element.
+                          </audio> 
+                        </div>
+                      </div>
+                    </div>
+                  <?php endif; ?>
                 </div>
               </div>
               <div class="col-6">

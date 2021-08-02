@@ -425,6 +425,7 @@ class App extends CI_Controller {
 				// var_dump($past_kategori);
 				// die;
 
+				$penyakit_id = 0;
 				$max_skor = -1.0;
 				$kategori = "";
 				$solusi = "";
@@ -432,6 +433,7 @@ class App extends CI_Controller {
 
 				foreach($past_kategori as $id => $skor) {
 					if($max_skor < (float)$skor) {
+						$penyakit_id = $id;
 						$max_skor = (float)$skor;
 						$kategori = $this->crud->get_kategori_name($id);
 						$solusi = $this->crud->get_solusi_text($id);
@@ -439,6 +441,7 @@ class App extends CI_Controller {
 					}
 				}
 
+				$data['penyakit_id'] = $penyakit_id;
 				$data['hasil'] = $kategori;
 				$data['solusi'] = $solusi;
 				$data['keterangan'] = $keterangan;
