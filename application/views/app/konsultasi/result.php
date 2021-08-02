@@ -66,7 +66,7 @@
                         <hr>
                         <audio controls>
                           <!-- <source src="horse.ogg" type="audio/ogg"> -->
-                          <source src="<?= base_url() ?>assets/relaksasi/musik.mp3" type="audio/mpeg">
+                          <source src="<?= base_url() ?>assets/relaksasi/relaksasi.mp3" type="audio/mpeg">
                           Your browser does not support the audio element.
                         </audio>
                       <?php endif; ?>
