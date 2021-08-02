@@ -60,8 +60,11 @@ Content Wrapper. Contains page content -->
                       <hr>
                       <p align="justify"><?= $solusi ?></p>
 
+                      <hr class="mt-2">
+                      <h3>Rekomendasi Audio Relaksasi</h3>
+                      <hr>
                       <?php if($penyakit_id != 13): ?>
-                         <audio class="mt-2" controls>
+                         <audio controls>
                           <!-- <source src="horse.ogg" type="audio/ogg"> -->
                           <source src="<?= base_url() ?>assets/relaksasi/audio.mp3" type="audio/mpeg">
                           Your browser does not support the audio element.
