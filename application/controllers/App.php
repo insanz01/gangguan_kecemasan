@@ -441,11 +441,37 @@ class App extends CI_Controller {
 					}
 				}
 
+				$belief_score = (float)$max_skor * 100;
+				
+				$teks_kepercayaan = "Tidak Mungkin";
+
+				if($belief_score < -0.2) {
+					$kategori = "Tidak Terdiagnosis";
+					$teks_kepercayaan = "Tidak Mungkin";
+					$solusi = "Hasil uji gejala yang dilakukan tidak relevan atau ada kekurangan saat mengisi survei gejala";
+					$keterangan = "Tidak Terdiagnosis Gangguan Kecemasan.<br>Silahkan coba sekali lagi untuk mengisi gejala yang dirasakan.";
+				} else {
+					if($belief_score > 0.8 && $belief_score <= 1) {
+                      $teks_kepercayaan = "Pasti";
+                    } elseif($belief_score > 0.6) {
+                      $teks_kepercayaan = "Hampir Pasti";
+                    } elseif($belief_score > 0.4) {
+                      $teks_kepercayaan = "Kemungkinan Besar";
+                    } else if($belief_score > 0.2) {
+                      $teks_kepercayaan = "Mungkin";
+                    } else if($belief_score >= -0.2) {
+                      $teks_kepercayaan = "Sedikit Kemungkinan";
+                    } else {
+                      $teks_kepercayaan = "Tidak Mungkin";
+                    }
+				}
+
 				$data['penyakit_id'] = $penyakit_id;
 				$data['hasil'] = $kategori;
 				$data['solusi'] = $solusi;
 				$data['keterangan'] = $keterangan;
-				$data['kepercayaan'] = (float)$max_skor * 100;
+				$data['kepercayaan'] = $belief_score;
+				$data['teks_kepercayaan'] = $teks_kepercayaan;
 
 				// echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~<br>";
 				// var_dump($data['hasil']);
