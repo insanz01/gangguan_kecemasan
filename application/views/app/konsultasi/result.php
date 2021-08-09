@@ -61,7 +61,7 @@
                       <hr>
                       <p align="justify"><?= $solusi ?></p>
 
-                      <?php if($penyakit_id != 13): ?>
+                      <?php if($penyakit_id != 13 || $kepercayaan < -0.2): ?>
                         <hr class="mt-2">
                         <h3>Rekomendasi Audio Relaksasi</h3>
                         <hr>
