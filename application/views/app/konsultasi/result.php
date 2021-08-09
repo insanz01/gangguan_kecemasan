@@ -42,8 +42,8 @@
                             </h3>
                             <hr>
                             <p class="lead <?= ($kepercayaan > 0) ? 'text-success': 'text-danger' ?>">
-                              <!-- Nilai Kepercayaan <?= $kepercayaan . '%' ?> -->
-                              Kepercayaan : <?= $teks_kepercayaan; ?>
+                              Nilai Kepercayaan <?= $kepercayaan . '%' ?> (<?= $teks_kepercayaan ?>)
+                              <!-- Kepercayaan : <?= $teks_kepercayaan; ?> -->
                             </p>
                           </div>
                         </div>
