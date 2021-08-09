@@ -36,7 +36,11 @@
                         <div class="row">
                           <div class="col text-center">
                             <?php $gambar = ($kepercayaan >= -0.2) ? mt_rand(1, 10) : 1; ?>
-                            <img src="<?= base_url('assets/penyakit/') . strval($gambar) . '.jpg' ?>" alt="Gambar" width="300">
+                            <?php if($kepercayaan >= -0.2): ?>
+                              <img src="<?= base_url('assets/penyakit/') . strval($gambar) . '.jpg' ?>" alt="Gambar" width="300">
+                            <?php else: ?>
+                              <img src="<?= base_url('assets/penyakit/sehat/') . strval($gambar) . '.jpg' ?>" alt="Gambar" width="300">
+                            <?php endif; ?>
                             <h3 class="display-5">
                               <?= $hasil ?>
                             </h3>
