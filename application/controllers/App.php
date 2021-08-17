@@ -443,11 +443,11 @@ class App extends CI_Controller {
 
 				$belief_score = (float)$max_skor * 100;
 				
-				$teks_kepercayaan = "Tidak Mungkin";
+				$teks_kepercayaan = "Tidak Memiliki Gangguan";
 
 				if($belief_score < -0.2) {
 					$kategori = "Tidak Terdiagnosis";
-					$teks_kepercayaan = "Tidak memilii gangguan";
+					$teks_kepercayaan = "Tidak Memiliki Gangguan";
 					$solusi = "Selamat! Kondisi mental anda tergolong baik-baik saja. tidak perlu khawatir, tetap menjalani aktivitas sehari-hari dan tetap berpikir positif. Jika ingin merasa lebih baik, anda bisa mencoba audio relaksasi di bawah ini.";
 					$keterangan = "Tidak Terdiagnosis Gangguan Kecemasan.";
 				} else {
@@ -462,7 +462,7 @@ class App extends CI_Controller {
                     } else if($belief_score >= -0.2) {
                       $teks_kepercayaan = "Sedikit Kemungkinan";
                     } else {
-                      $teks_kepercayaan = "Tidak Mungkin";
+                      $teks_kepercayaan = "Tidak Memiliki Gangguan";
                     }
 				}
 
