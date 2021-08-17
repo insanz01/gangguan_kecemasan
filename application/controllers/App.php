@@ -447,8 +447,8 @@ class App extends CI_Controller {
 
 				if($belief_score < -0.2) {
 					$kategori = "Tidak Terdiagnosis";
-					$teks_kepercayaan = "Tidak Mungkin";
-					$solusi = "Selamat! Kecemasan yang kamu rasakan masih tergolong normal.<br> Tidak perlu khawatir, kecemasan adalah hal normal. Namun jika ingin mearsa lebih baik, kamu bisa coba audio relaksasi di bawah ini.";
+					$teks_kepercayaan = "Tidak memilii gangguan";
+					$solusi = "Selamat! Kondisi mental anda tergolong baik-baik saja. tidak perlu khawatir, tetap menjalani aktivitas sehari-hari dan tetap berpikir positif. Jika ingin merasa lebih baik, anda bisa mencoba audio relaksasi di bawah ini.";
 					$keterangan = "Tidak Terdiagnosis Gangguan Kecemasan.";
 				} else {
 					if($belief_score > 0.8 && $belief_score <= 1) {
