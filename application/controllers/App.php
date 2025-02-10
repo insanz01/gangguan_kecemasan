@@ -339,9 +339,7 @@ class App extends CI_Controller {
 					}
 
 					$temp = explode('-', $kunci);
-					// echo $perulangan_ke++;
-					// echo "<br>";
-					// // var_dump($temp[3]); die;
+
 					$id = (int) $temp[1];
 					$skor = $temp[2]; // nilai cf pakar
 					$penyakit_id = $temp[3];
@@ -353,7 +351,6 @@ class App extends CI_Controller {
 					
 					if(strpos($penyakit_id, '&') !== false) {
 						$penyakit_ids = explode('&', $penyakit_id);
-						// var_dump($penyakit_ids); die;
 						foreach($penyakit_ids as $pi) {
 							$pi = (int) $pi;
 							if(!in_array($pi, $inserted_kategori)) {
@@ -361,7 +358,6 @@ class App extends CI_Controller {
 								$kombinasi = $cf * $skor;
 		
 								array_push($inserted_kategori, $pi);
-								// array_push($past_kategori, [$pi => $kombinasi]);
 								$past_kategori[$pi] = $kombinasi;
 							} else {
 								$cf = $bobot - (1 - $bobot);
@@ -379,14 +375,6 @@ class App extends CI_Controller {
 									$new_kombinasi = ($last_kombinasi + $kombinasi) / (1 - min([abs($last_kombinasi), abs($kombinasi)]));
 								}
 
-								// echo "==============<br>";
-								// var_dump($kombinasi);
-								// echo "<br>";
-								// var_dump($last_kombinasi);
-								// echo "<br>";
-								// var_dump($new_kombinasi);
-								// echo "<br>";
-		
 								$past_kategori[$pi] = $new_kombinasi;
 							}
 						}
@@ -397,7 +385,6 @@ class App extends CI_Controller {
 							$kombinasi = $cf * $skor;
 	
 							array_push($inserted_kategori, $penyakit_id);
-							// array_push($past_kategori, [$penyakit_id => $kombinasi]);
 							$past_kategori[$penyakit_id] = $kombinasi;
 						} else {
 							$cf = $bobot - (1 - $bobot);
@@ -419,11 +406,7 @@ class App extends CI_Controller {
 						}
 					}
 
-					// array_push($jawaban, [$penyakit_id => ['gejala_id' => $id ,'skor' => $skor ,'nilai' => $data]]);
 				}
-
-				// var_dump($past_kategori);
-				// die;
 
 				$penyakit_id = 0;
 				$max_skor = -1.0;
@@ -472,12 +455,6 @@ class App extends CI_Controller {
 				$data['keterangan'] = $keterangan;
 				$data['kepercayaan'] = $belief_score;
 				$data['teks_kepercayaan'] = $teks_kepercayaan;
-
-				// echo "~~~~~~~~~~~~~~~~~~~~~~~~~~~<br>";
-				// var_dump($data['hasil']);
-				// var_dump($data['solusi']);
-				// var_dump($data['kepercayaan']);
-				// die;
 
 				// akan menyimpan riwayat ketika sudah login
 				if($this->session->userdata('sess_user_id')) {

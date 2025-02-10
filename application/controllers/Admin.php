@@ -353,4 +353,50 @@ class Admin extends CI_Controller {
 		}
 	}
 
+	public function laporan() {
+		$data['pasien'] = $this->crud->get('pasien');
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/navbar');
+		$this->load->view('templates/sidebar');
+		$this->load->view('admin/laporan/index', $data);
+		$this->load->view('templates/footer');
+	}
+
+	public function cetak($target, $id = NULL) {
+		$data = [];
+		$page = "";
+
+		switch($target) {
+			case "pasien":
+				$page = "admin/laporan/print-out/daftar-pasien";
+				$data['laporan'] = $this->crud->get('pasien');
+				break;
+			case "gejala":
+				$page = "admin/laporan/print-out/gejala";
+				$data['laporan'] = $this->crud->get('gejala');
+				break;
+			case "penyakit":
+				$page = "admin/laporan/print-out/penyakit";
+				$data['laporan'] = $this->crud->get('penyakit');
+				break;
+			case "pakar":
+				$page = "admin/laporan/print-out/pakar";
+				// $data['laporan'] = $this->crud->get('users', ['role_id' => 3]);
+				$data['laporan'] = $this->admin->get_userdata('pakar');
+				break;
+		}
+
+		$this->load->view($page, $data);
+	}
+
+	public function cetak_rekam_medis() {
+		$id = $this->input->post('id_pasien');
+
+		$data['laporan'] = $this->crud->custom_get('riwayat', ['pasien_id' => $id]);
+		$data['pasien'] = $this->crud->get('pasien', $id);
+
+		$this->load->view('admin/laporan/print-out/rekam-medis', $data);
+	}
+
 }

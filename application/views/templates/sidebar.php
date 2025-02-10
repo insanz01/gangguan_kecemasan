@@ -192,6 +192,14 @@
                 </li>
               </ul>
             </li>
+            <li class="nav-item">
+              <a href="<?= base_url('admin/laporan') ?>" class="nav-link" style=" color: #252525; !important">
+                <i class="nav-icon fas fa-file"></i>
+                <p>
+                  Laporan
+                </p>
+              </a>
+            </li>
           <?php endif; ?>
           <li class="nav-item">
             <a href="<?= base_url('app/logout') ?>" class="nav-link" style=" color: #252525; !important">
