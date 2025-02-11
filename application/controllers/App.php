@@ -313,7 +313,44 @@ class App extends CI_Controller {
 				$url_page = "app/konsultasi/index";
 			break;
 			case 2:
-				$url_page = "app/konsultasi/pasien";
+				$role_id = $this->session->userdata('sess_role_id');
+				$user_id = $this->session->userdata('sess_user_id');
+
+				if($role_id == 2) {
+					$user = $this->crud->custom_get('users', ['id' => $user_id]);
+					$pasien = $this->crud->custom_get('pasien', ['user_id' => $user_id]);
+	
+					$user_data = [
+						'sess_pasien_nama' => $pasien['nama'],
+						'sess_pasien_umur' => $pasien['umur'],
+						'sess_pasien_jenis_kelamin' => $pasien['jenis_kelamin'],
+						'sess_pasien_nomor_hp' => $pasien['nomor_hp']
+					];
+
+					$pertanyaan = [];
+					$temp_pertanyaan = $this->crud->get_pertanyaan();
+					
+					foreach($temp_pertanyaan as $hasil) {
+						$temp = [
+							'id' => $hasil['id'],
+							'skor' => $hasil['skor'],
+							'nama_gejala' => $hasil['nama_gejala'],
+							'penyakit_id' => strval($hasil['penyakit_id'])
+						];
+
+						if(!array_key_exists($hasil['id'], $pertanyaan)) {
+							$pertanyaan[$hasil['id']] = $temp;
+						} else {
+							$pertanyaan[$hasil['id']]['penyakit_id'] .= '&' . strval($hasil['penyakit_id']);
+						}
+					}
+
+					$data['pertanyaan'] = $pertanyaan;
+
+					$url_page = "app/konsultasi/gejala";
+				} else {
+					$url_page = "app/konsultasi/pasien";
+				}
 			break;
 			case 3:
 				$user_data = [
