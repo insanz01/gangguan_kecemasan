@@ -142,7 +142,7 @@ class Admin extends CI_Controller {
 				'skor' => $this->input->post('skor')
 			];
 
-			$id = $this->input->post('id_cetainty');
+			$id = $this->input->post('id_certainty');
 
 			if($this->crud->update($data, 'certainty', $id)) {
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil merubah data certainty.</div>');

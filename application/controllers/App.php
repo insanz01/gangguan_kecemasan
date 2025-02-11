@@ -319,6 +319,8 @@ class App extends CI_Controller {
 				if($role_id == 2) {
 					$user = $this->crud->custom_get('users', ['id' => $user_id])[0];
 					$pasien = $this->crud->custom_get('pasien', ['user_id' => $user_id])[0];
+
+					var_dump($pasien); die;
 					
 					$user_data = [
 						'sess_pasien_nama' => $pasien['nama'],
@@ -366,8 +368,6 @@ class App extends CI_Controller {
 				$temp_pertanyaan = $this->crud->get_pertanyaan();
 				
 				foreach($temp_pertanyaan as $hasil) {
-					// print_r($hasil);
-					// echo "<br>";
 					$temp = [
 						'id' => $hasil['id'],
 						'skor' => $hasil['skor'],
@@ -383,26 +383,6 @@ class App extends CI_Controller {
 				}
 
 				$data['pertanyaan'] = $pertanyaan;
-
-				// echo "<br>";
-				// foreach($pertanyaan as $p) {
-				// 	print_r($p);
-				// 	echo "<br>";
-
-				// 	// if(strpos($p['penyakit_id'], '&') !== false) {
-				// 	// 	$temp = explode('&', $p['penyakit_id']);
-				// 	// 	foreach($temp as $t) {
-				// 	// 		echo $t;
-				// 	// 		echo "<br>";
-				// 	// 	}
-	
-				// 	// 	die;
-				// 	// } else {
-				// 	// 	echo $p;
-				// 	// }
-				// }
-				
-				// die;
 
 				$url_page = "app/konsultasi/gejala";
 			break;
