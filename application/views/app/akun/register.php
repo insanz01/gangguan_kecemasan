@@ -42,9 +42,24 @@
                     <label>Username</label>
                     <input type="text" name="username" class="form-control" required>
                   </div>
-                  <div class ="form-group">
+                  <div class="form-group">
                     <label>Email</label>
                     <input type="email" name="email" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Nomor HP</label>
+                    <input type="text" name="nomor_hp" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Tanggal Lahir</label>
+                    <input type="date" name="tanggal_lahir" class="form-control" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Jenis Kelamin</label>
+                    <select class="form-control" name="jenis_kelamin" required>
+                      <option value="Laki-laki">Laki-laki</option>
+                      <option value="Perempuan">Perempuan</option>
+                    </select>
                   </div>
                   <div class="form-group">
                     <label>Password</label>

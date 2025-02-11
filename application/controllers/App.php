@@ -9,6 +9,8 @@ class App extends CI_Controller {
 		$this->load->model('AdminModel', 'admin');
 	}
 
+	private $mail_url = 'https://612c-2404-c0-7150-00-1-530f-2278.ngrok-free.app';
+
 	// halaman dashboard
 	public function index() {
 		$this->load->view('templates/header');
@@ -111,6 +113,9 @@ class App extends CI_Controller {
 	public function register() {
 		$this->form_validation->set_rules('nama_lengkap', 'NamaLengkap', 'required');
 		$this->form_validation->set_rules('username', 'Username', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('nomor_hp', 'NomorHP', 'required');
+		$this->form_validation->set_rules('tanggal_lahir', 'TanggalLahir', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
 
 		if($this->form_validation->run() === FALSE) {
@@ -126,13 +131,28 @@ class App extends CI_Controller {
 			$data['is_active'] = 0;
 			$data['id'] = NULL;
 
+			$pasien = [
+				'nomor_hp' => $data['nomor_hp'],
+				'umur' => $this->hitung_umur($data['tanggal_lahir']),
+				'id' => NULL,
+				'jenis_kelamin' => $data['jenis_kelamin'],
+				'nama' => $data['nama_lengkap'],
+			];
+
 			$success = false;
 
 			if($this->auth->username_exists($data['username']) && $this->auth->email_exists($data['email'])) {
 				$success = true;
 			}
 
-			if($this->crud->insert($data, 'users') && $success) {
+			if($success) {
+				$insert_id = $this->crud->insert($data, 'users');
+
+				if($insert_id) {
+					$pasien['user_id'] = $insert_id;
+					$this->crud->insert($pasien, 'pasien');
+				}
+
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Berhasil registrasi. Silahkan periksa email untuk melakukan aktivasi.</div>');
 				
 				$subject = 'AKTIVASI AKUN';
@@ -162,27 +182,49 @@ class App extends CI_Controller {
 
 	public function kirim_email($email, $subject, $message) {
 
-		$config['protocol'] = 'smtp';
-		$config['smtp_host'] = 'ssl://smtp.googlemail.com';
-		$config['smtp_port'] = 465;
-		$config['smtp_user'] = 'yourmail@gmail.com';
-		$config['smtp_pass'] = '*********';
-		$config['mailtype'] = 'html';
-		$config['charset'] = 'iso-8859-1';
+		// $config['protocol'] = 'smtp';
+		// $config['smtp_host'] = 'ssl://smtp.googlemail.com';
+		// $config['smtp_port'] = 465;
+		// $config['smtp_user'] = 'yourmail@gmail.com';
+		// $config['smtp_pass'] = '*********';
+		// $config['mailtype'] = 'html';
+		// $config['charset'] = 'iso-8859-1';
 
-		$this->load->library('email');
-		$this->email->initialize($config);
+		// $this->load->library('email');
+		// $this->email->initialize($config);
 
-		$this->email->set_newline("\r\n");
+		// $this->email->set_newline("\r\n");
 
-		$this->email->from('yourmail@gmail.com', 'Gangguan Kecemasan');
-		$this->email->to($email);
+		// $this->email->from('yourmail@gmail.com', 'Gangguan Kecemasan');
+		// $this->email->to($email);
 
-		$this->email->subject($subject);
-		$this->email->message($message);
+		// $this->email->subject($subject);
+		// $this->email->message($message);
 
-		$this->email->send();
+		// $this->email->send();
 		// var_dump($this->email->send()); die;
+
+		$url =  $this->mail_url . '/send-verification-email';
+		$ch = curl_init($url);
+
+		$base64mail = base64_encode($data['email']);
+
+		$msg = array(
+				'email' => $data['email'],
+				'name' => $data['username'],
+				'message' => base_url('auth/verifikasi/' . $token . '?email=' . $base64mail)
+		);
+
+		$payload = json_encode($msg);
+
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		$result = curl_exec($ch);
+		curl_close($ch);
+
+		$result = json_decode($result, true);
 	}
 
 	public function forgot($aksi = '') {
@@ -544,5 +586,19 @@ class App extends CI_Controller {
 
 		echo json_encode($data, JSON_PRETTY_PRINT);
 	}
+
+	function hitung_umur($tanggalLahir) {
+    // Mengonversi tanggal lahir ke objek DateTime
+    $lahir = new DateTime($tanggalLahir);
+    
+    // Mengambil tanggal sekarang
+    $sekarang = new DateTime();
+    
+    // Menghitung selisih antara tanggal sekarang dan tanggal lahir
+    $interval = $sekarang->diff($lahir);
+    
+    // Mengembalikan umur dalam tahun
+    return $interval->y;
+}
 
 }
