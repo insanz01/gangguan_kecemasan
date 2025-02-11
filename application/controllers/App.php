@@ -319,8 +319,6 @@ class App extends CI_Controller {
 				if($role_id == 2) {
 					$user = $this->crud->custom_get('users', ['id' => $user_id])[0];
 					$pasien = $this->crud->custom_get('pasien', ['user_id' => $user_id])[0];
-
-					var_dump($pasien); die;
 					
 					$user_data = [
 						'sess_pasien_nama' => $pasien['nama'],
@@ -328,6 +326,8 @@ class App extends CI_Controller {
 						'sess_pasien_jenis_kelamin' => $pasien['jenis_kelamin'],
 						'sess_pasien_nomor_hp' => $pasien['nomor_hp']
 					];
+
+					$this->session->set_userdata($user_data);
 
 					$pertanyaan = [];
 					$temp_pertanyaan = $this->crud->get_pertanyaan();
