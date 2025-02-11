@@ -317,9 +317,9 @@ class App extends CI_Controller {
 				$user_id = $this->session->userdata('sess_user_id');
 
 				if($role_id == 2) {
-					$user = $this->crud->custom_get('users', ['id' => $user_id]);
-					$pasien = $this->crud->custom_get('pasien', ['user_id' => $user_id]);
-	
+					$user = $this->crud->custom_get('users', ['id' => $user_id])[0];
+					$pasien = $this->crud->custom_get('pasien', ['user_id' => $user_id])[0];
+					
 					$user_data = [
 						'sess_pasien_nama' => $pasien['nama'],
 						'sess_pasien_umur' => $pasien['umur'],
