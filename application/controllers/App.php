@@ -164,7 +164,7 @@ class App extends CI_Controller {
 				$url = base_url() . 'app/aktivasi/' . $data['username'];
 				$message = "Halo $data[email], kamu bisa aktivasi akun mu pada link : " . $url;
 
-				$this->kirim_email($data['email'], $subject, $message);
+				$this->kirim_email($data['email'], $subject, $url);
 
 				redirect('app/login');
 			} else {
@@ -243,7 +243,7 @@ class App extends CI_Controller {
 				$url = base_url() . 'app/reset/' . $key;
 				$message = "Halo $email, kamu bisa reset password mu pada link : " . $url;
 				// $message = "Halo $email, kamu bisa reset password mu pada link : http://localhost/gangguan-kecemasan/app/reset/$key";
-				$this->kirim_email($email, $subject, $message);
+				$this->kirim_email($email, $subject, $url);
 
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Mohon periksa alamat email anda</div>');
 			} else {
