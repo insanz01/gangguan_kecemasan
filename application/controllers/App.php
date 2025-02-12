@@ -126,10 +126,15 @@ class App extends CI_Controller {
 			$this->load->view('templates/footer');
 		} else {
 			$data = $this->input->post();
-			$data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
-			$data['role_id'] = 2;
-			$data['is_active'] = 0;
-			$data['id'] = NULL;
+			$users = [
+				'username' => $data['username'],
+				'nama_lengkap' => $data['nama_lengkap'],
+				'email' => $data['email'],
+			];
+			$users['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+			$users['role_id'] = 2;
+			$users['is_active'] = 0;
+			$users['id'] = NULL;
 
 			$pasien = [
 				'nomor_hp' => $data['nomor_hp'],
@@ -146,7 +151,7 @@ class App extends CI_Controller {
 			}
 
 			if($success) {
-				$insert_id = $this->crud->insert($data, 'users');
+				$insert_id = $this->crud->insert($users, 'users');
 
 				if($insert_id) {
 					$pasien['user_id'] = $insert_id;
@@ -207,12 +212,10 @@ class App extends CI_Controller {
 		$url =  $this->mail_url . '/send-verification-email';
 		$ch = curl_init($url);
 
-		$base64mail = base64_encode($data['email']);
-
 		$msg = array(
-				'email' => $data['email'],
-				'name' => $data['username'],
-				'message' => base_url('auth/verifikasi/' . $token . '?email=' . $base64mail)
+				'email' => $email,
+				'subject' => $subject,
+				'message' => $message
 		);
 
 		$payload = json_encode($msg);
@@ -494,18 +497,18 @@ class App extends CI_Controller {
 					$keterangan = "Tidak Terdiagnosis Gangguan Kecemasan.";
 				} else {
 					if($belief_score > 0.8 && $belief_score <= 1) {
-                      $teks_kepercayaan = "Pasti";
-                    } elseif($belief_score > 0.6) {
-                      $teks_kepercayaan = "Hampir Pasti";
-                    } elseif($belief_score > 0.4) {
-                      $teks_kepercayaan = "Kemungkinan Besar";
-                    } else if($belief_score > 0.2) {
-                      $teks_kepercayaan = "Mungkin";
-                    } else if($belief_score >= -0.2) {
-                      $teks_kepercayaan = "Sedikit Kemungkinan";
-                    } else {
-                      $teks_kepercayaan = "Tidak Memiliki Gangguan";
-                    }
+						$teks_kepercayaan = "Pasti";
+					} elseif($belief_score > 0.6) {
+						$teks_kepercayaan = "Hampir Pasti";
+					} elseif($belief_score > 0.4) {
+						$teks_kepercayaan = "Kemungkinan Besar";
+					} else if($belief_score > 0.2) {
+						$teks_kepercayaan = "Mungkin";
+					} else if($belief_score >= -0.2) {
+						$teks_kepercayaan = "Sedikit Kemungkinan";
+					} else {
+						$teks_kepercayaan = "Tidak Memiliki Gangguan";
+					}
 				}
 
 				$data['penyakit_id'] = $penyakit_id;
