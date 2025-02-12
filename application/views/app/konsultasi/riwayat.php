@@ -40,6 +40,11 @@
                         <th>Audio Terapi</th>
                       </thead>
                       <tbody>
+                        <?php
+                          function randomAngka() {
+                            return rand(1, 4); // Menghasilkan angka acak antara 1 dan 4
+                          }
+                        ?>
                         <?php if($riwayat != []): ?>
                           <?php foreach($riwayat as $r): ?>
                             <tr>
@@ -51,9 +56,12 @@
                                 <?php if($r['id'] != 13): ?>
                                    <audio class="mt-2" controls>
                                     <!-- <source src="horse.ogg" type="audio/ogg"> -->
-                                    <source src="<?= base_url() ?>assets/relaksasi/relaksasi.mp3" type="audio/mpeg">
-                                    Your browser does not support the audio element.
-                                  </audio>
+                                     <?php
+                                      $source = "assets/relaksasi/relaksasi-" . randomAngka() . ".mp3";
+                                     ?>
+                                    <source src="<?= base_url() . $source ?>" type="audio/mpeg">
+                                      Your browser does not support the audio element.
+                                    </audio>
                                 <?php endif; ?>
                               </td>
                             </tr>
