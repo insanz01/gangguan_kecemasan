@@ -42,7 +42,7 @@
                       <tbody>
                         <?php
                           function randomAngka() {
-                            return rand(1, 4); // Menghasilkan angka acak antara 1 dan 4
+                            return rand(2, 4); // Menghasilkan angka acak antara 2 dan 4
                           }
                         ?>
                         <?php if($riwayat != []): ?>
@@ -54,14 +54,22 @@
                               <td><?= $r['solusi'] ?></td>
                               <td>
                                 <?php if($r['id'] != 13): ?>
-                                   <audio class="mt-2" controls>
+                                  <audio class="mt-2" controls>
                                     <!-- <source src="horse.ogg" type="audio/ogg"> -->
-                                     <?php
-                                      $source = "assets/relaksasi/relaksasi-" . randomAngka() . ".mp3";
-                                     ?>
+                                    <?php
+                                      $source = "assets/relaksasi/relaksasi-1.mp3";
+                                    ?>
                                     <source src="<?= base_url() . $source ?>" type="audio/mpeg">
-                                      Your browser does not support the audio element.
-                                    </audio>
+                                    Your browser does not support the audio element.
+                                  </audio> 
+                                  <audio class="mt-2" controls>
+                                    <!-- <source src="horse.ogg" type="audio/ogg"> -->
+                                    <?php
+                                      $source = "assets/relaksasi/relaksasi-" . randomAngka() . ".mp3";
+                                    ?>
+                                    <source src="<?= base_url() . $source ?>" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                  </audio>
                                 <?php endif; ?>
                               </td>
                             </tr>
