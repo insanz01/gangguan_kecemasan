@@ -30,9 +30,9 @@
         <div class="row">
           <div class="col-12 mb-2">
             <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addModal">
-            Tambah Data
-            </button>
+            <!-- <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#addModal">
+              Tambah Data
+            </button> -->
           </div>
           <div class="col-12 mx-auto">
             <div class="card">
