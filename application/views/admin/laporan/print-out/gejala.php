@@ -13,6 +13,15 @@
   <body>
     <div class="row">
       <div class="col-12">
+        <p align="center">
+          <b><font size="4">PRAKTIK MANDIRI PSIKOLOG KONSELING AHMAD ZAIN HABIBULLAH, M.Psi.</font> </b><br>
+          <font size="2">Jl. Cempaka Raya No.99, RT.10, Telaga Biru, Kec. Banjarmasin Barat</font><br>
+          <font size="2">Kota Banjarmasin, Kalimantan Selatan 70119 Email: ahmadzain23@gmail.com</font> 
+          <br><br>
+          <hr size="2px" color="black">
+        </p>
+      </div>
+      <div class="col-12">
         <h1 class="text-center my-3">LAPORAN GEJALA</h1>
         <table class="table table-bordered">
           <thead>

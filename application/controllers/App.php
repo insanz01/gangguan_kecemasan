@@ -185,31 +185,14 @@ class App extends CI_Controller {
 		redirect('app/login');
 	}
 
-	public function kirim_email($email, $subject, $message) {
-
-		// $config['protocol'] = 'smtp';
-		// $config['smtp_host'] = 'ssl://smtp.googlemail.com';
-		// $config['smtp_port'] = 465;
-		// $config['smtp_user'] = 'yourmail@gmail.com';
-		// $config['smtp_pass'] = '*********';
-		// $config['mailtype'] = 'html';
-		// $config['charset'] = 'iso-8859-1';
-
-		// $this->load->library('email');
-		// $this->email->initialize($config);
-
-		// $this->email->set_newline("\r\n");
-
-		// $this->email->from('yourmail@gmail.com', 'Gangguan Kecemasan');
-		// $this->email->to($email);
-
-		// $this->email->subject($subject);
-		// $this->email->message($message);
-
-		// $this->email->send();
-		// var_dump($this->email->send()); die;
+	public function kirim_email($email, $subject, $message, $target = 'verifikasi') {
 
 		$url =  $this->mail_url . '/send-verification-email';
+
+		if($target == "forgot-password") {
+			$url =  $this->mail_url . '/send-forgot-password';
+		}
+		
 		$ch = curl_init($url);
 
 		$msg = array(
