@@ -9,7 +9,7 @@ class App extends CI_Controller {
 		$this->load->model('AdminModel', 'admin');
 	}
 
-	private $mail_url = 'https://461d-2404-c0-7140-00-1-6016-a2dd.ngrok-free.app';
+	private $mail_url = 'https://c82e-2404-c0-7050-00-1-8ff6-4867.ngrok-free.app';
 
 	// halaman dashboard
 	public function index() {
