@@ -264,7 +264,19 @@ class Admin extends CI_Controller {
 			$this->load->view('admin/pasien/riwayat', $data);
 			$this->load->view('templates/footer');
 		} else {
-			$data['pasien'] = $this->crud->get('pasien');
+			$role_id = $this->session->userdata('sess_role_id');
+
+			$pasien = $this->crud->get('pasien');
+
+			if ($role_id == 3) {
+				$user_id = $this->session->userdata('sess_user_id');
+				$whereCondition = [
+					"pakar_id" => $user_id
+				];
+				$pasien = $this->crud->custom_get('pasien', $whereCondition);
+			}
+
+			$data['pasien'] = $pasien;
 
 			$this->load->view('templates/header');
 			$this->load->view('templates/navbar');

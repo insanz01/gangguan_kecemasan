@@ -36,23 +36,28 @@
                 <form action="<?= base_url('app/register') ?>" method="post">
                   <div class="form-group">
                     <label>Nama Lengkap</label>
-                    <input type="text" name="nama_lengkap" class="form-control" required>
+                    <input type="text" name="nama_lengkap" class="form-control" value="<?= set_value('nama_lengkap') ?>" required>
+                    <small class="text-danger"><?= form_error('nama_lengkap') ?></small>
                   </div>
                   <div class="form-group">
                     <label>Username</label>
-                    <input type="text" name="username" class="form-control" required>
+                    <input type="text" name="username" class="form-control" value="<?= set_value('username') ?>" required>
+                    <small class="text-danger"><?= form_error('username') ?></small>
                   </div>
                   <div class="form-group">
                     <label>Email</label>
-                    <input type="email" name="email" class="form-control" required>
+                    <input type="email" name="email" class="form-control" value="<?= set_value('email') ?>" required>
+                    <small class="text-danger"><?= form_error('email') ?></small>
                   </div>
                   <div class="form-group">
                     <label>Nomor HP</label>
-                    <input type="text" name="nomor_hp" class="form-control" required>
+                    <input type="text" name="nomor_hp" class="form-control" value="<?= set_value('nomor_hp') ?>" required>
+                    <small class="text-danger"><?= form_error('nomor_hp') ?></small>
                   </div>
                   <div class="form-group">
                     <label>Tanggal Lahir</label>
-                    <input type="date" name="tanggal_lahir" class="form-control" required>
+                    <input type="date" name="tanggal_lahir" class="form-control" value="<?= set_value('tanggal_lahir') ?>" required>
+                    <small class="text-danger"><?= form_error('tanggal_lahir') ?></small>
                   </div>
                   <div class="form-group">
                     <label>Jenis Kelamin</label>
@@ -63,7 +68,8 @@
                   </div>
                   <div class="form-group">
                     <label>Password</label>
-                    <input type="password" name="password" class="form-control" required>
+                    <input type="password" name="password" class="form-control" value="<?= set_value('password') ?>" required>
+                    <small class="text-danger"><?= form_error('password') ?></small>
                   </div>
                   <div class="form-group">
                     <button type="submit" class="btn btn-success btn-block">REGISTRASI</button>

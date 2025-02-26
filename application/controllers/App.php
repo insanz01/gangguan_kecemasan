@@ -13,10 +13,23 @@ class App extends CI_Controller {
 
 	// halaman dashboard
 	public function index() {
+		$data['total_penyakit'] = $this->admin->total_data('penyakit');
+		$data['total_gejala'] = $this->admin->total_data('gejala');
+		$data['total_pasien'] = $this->admin->total_data('pasien');
+		$data['pasien'] = [];
+
+		$page = "app/dashboard";
+		
+		$role_id = $this->session->userdata('sess_role_id');
+		if($role_id == 3) {
+			$data['pasien'] = $this->admin->riwayat_reminder();
+			$page = "app/dashboard_pakar";
+		}
+
 		$this->load->view('templates/header');
 		$this->load->view('templates/navbar');
 		$this->load->view('templates/sidebar');
-		$this->load->view('app/dashboard');
+		$this->load->view($page, $data);
 		$this->load->view('templates/footer');
 	}
 
@@ -82,8 +95,8 @@ class App extends CI_Controller {
 	}
 
 	public function login() {
-		$this->form_validation->set_rules('username', 'Username', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('username', 'Username', 'required|min_length[5]');
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
 
 		if($this->form_validation->run() == FALSE) {
 			$this->load->view('templates/header');
@@ -112,11 +125,11 @@ class App extends CI_Controller {
 
 	public function register() {
 		$this->form_validation->set_rules('nama_lengkap', 'NamaLengkap', 'required');
-		$this->form_validation->set_rules('username', 'Username', 'required');
+		$this->form_validation->set_rules('username', 'Username', 'required|min_length[5]');
 		$this->form_validation->set_rules('email', 'Email', 'required');
-		$this->form_validation->set_rules('nomor_hp', 'NomorHP', 'required');
+		$this->form_validation->set_rules('nomor_hp', 'NomorHP', 'required|numeric');
 		$this->form_validation->set_rules('tanggal_lahir', 'TanggalLahir', 'required');
-		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
 
 		if($this->form_validation->run() === FALSE) {
 			$this->load->view('templates/header');
@@ -226,7 +239,7 @@ class App extends CI_Controller {
 				$url = base_url() . 'app/reset/' . $key;
 				$message = "Halo $email, kamu bisa reset password mu pada link : " . $url;
 				// $message = "Halo $email, kamu bisa reset password mu pada link : http://localhost/gangguan-kecemasan/app/reset/$key";
-				$this->kirim_email($email, $subject, $url);
+				$this->kirim_email($email, $subject, $url, 'forgot-password');
 
 				$this->session->set_flashdata('pesan', '<div class="alert alert-success" role="alert">Mohon periksa alamat email anda</div>');
 			} else {
